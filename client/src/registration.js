@@ -54,31 +54,47 @@ export class Registration extends Component {
     render() {
         return (
             <section>
-                {this.state.error && (
-                    <h2 style={{ color: "red" }}>{this.state.errMessage}</h2>
-                )}
-                <form>
-                    <input
-                        name="first"
-                        placeholder="First Name"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        name="last"
-                        placeholder="Last Name"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        name="email"
-                        placeholder="Email"
-                        onChange={this.handleChange}
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        onChange={this.handleChange}
-                    />
+                <form className="regForm">
+                    <div className="errWrapper">
+                        {this.state.error && (
+                            <h2 style={{ color: "red" }}>
+                                {this.state.errMessage}
+                            </h2>
+                        )}
+                    </div>
+                    <div>
+                        <label htmlFor="first">First Name</label>
+                        <input
+                            name="first"
+                            placeholder="First Name"
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="last">Last Name</label>
+                        <input
+                            name="last"
+                            placeholder="Last Name"
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            name="email"
+                            placeholder="Email"
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            onChange={this.handleChange}
+                        />
+                    </div>
                     <button onClick={(e) => this.handleSubmit(e)}>
                         Register
                     </button>

@@ -11,9 +11,9 @@ router.get("/user/id.json", function (req, res) {
 
 router.post("/register", (req, res) => {
     if (
-        !req.body.first &&
-        !req.body.last &&
-        !req.body.email &&
+        !req.body.first ||
+        !req.body.last ||
+        !req.body.email ||
         !req.body.password
     ) {
         res.json({ success: false, errMessage: "Please fill in all fields!" });
@@ -45,7 +45,15 @@ router.post("/register", (req, res) => {
                 });
         })
         .catch((err) => {
-            console.log(err);
+            if (err.code == "23505") {
+                res.json({
+                    success: false,
+                    errMessage:
+                        `User associated with ` +
+                        req.body.email +
+                        ` already exists`,
+                });
+            }
             res.json({
                 success: false,
                 errMessage: "Something went wrong",

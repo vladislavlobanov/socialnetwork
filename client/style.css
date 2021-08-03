@@ -1,7 +1,55 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: ghostwhite;
 }
 
 .logo {
     width: 300px;
+}
+
+input,
+label {
+    display: block;
+}
+
+.regForm {
+    display: grid;
+    grid-template-rows: max-content;
+    gap: 10px;
+    justify-content: center;
+    justify-items: center;
+}
+
+.mainContainer {
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+}
+
+.leftSide {
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+}
+
+.leftSide h2 {
+    text-align: center;
+}
+
+.leftSide h1 {
+    text-align: center;
+}
+
+.rightSide {
+    background-color: darkkhaki;
+    flex-grow: 3;
+    flex-basis: 300px;
 }
