@@ -10,7 +10,7 @@ const db = require("../db");
 app.use(express.json());
 
 app.use(
-    //put this one in secrets
+    //put this one in secrets !! IMPORTANT
     cookieSession({
         secret: `SOCIALNETWORKprojectSPICED2021`,
         maxAge: 1000 * 60 * 60 * 24 * 14,
