@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class Login extends Component {
     constructor() {
@@ -66,7 +67,7 @@ export class Login extends Component {
                         <label htmlFor="email">Email</label>
                         <input
                             name="email"
-                            placeholder="Email"
+                            placeholder="your@email.com"
                             onChange={this.handleChange}
                         />
                     </div>
@@ -75,13 +76,20 @@ export class Login extends Component {
                         <input
                             type="password"
                             name="password"
-                            placeholder="password"
+                            placeholder="Password"
                             onChange={this.handleChange}
                         />
                     </div>
                     <button onClick={(e) => this.handleSubmit(e)}>
                         Log in
                     </button>
+                    <div>
+                        Forgot your password?
+                        <p>
+                            Reset your password{" "}
+                            <Link to="/password-reset">here</Link>
+                        </p>
+                    </div>
                 </form>
             </section>
         );

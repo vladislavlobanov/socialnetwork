@@ -114,4 +114,38 @@ router.post("/login", (req, res) => {
         });
 });
 
+router.post("/password/reset/start", (req, res) => {
+    const emailFormat =
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (!emailFormat.test(req.body.email)) {
+        return res.json({
+            success: false,
+            errMessage: "Please provide a valid email address",
+        });
+    }
+
+    db.findUser(req.body.email)
+        .then((results) => {
+            if (!results.rows[0]) {
+                return res.json({
+                    success: false,
+                    errMessage:
+                        "No user found associated with " + req.body.email,
+                });
+            } else {
+                return res.json({
+                    success: false,
+                });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json({
+                success: false,
+                errMessage: "Something went wrong",
+            });
+        });
+});
+
 module.exports = router;

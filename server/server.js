@@ -4,13 +4,13 @@ const compression = require("compression");
 const path = require("path");
 const registerLogin = require("./routers/registrationlogin");
 const cookieSession = require("cookie-session");
+const secrets = require("./secrets");
 
 app.use(express.json());
 
 app.use(
-    //put this one in secrets !! IMPORTANT
     cookieSession({
-        secret: `SOCIALNETWORKprojectSPICED2021`,
+        secret: secrets.cookiePwd,
         maxAge: 1000 * 60 * 60 * 24 * 14,
         sameSite: true,
     })

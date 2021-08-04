@@ -84,7 +84,7 @@ export class Registration extends Component {
                             <label htmlFor="email">Email</label>
                             <input
                                 name="email"
-                                placeholder="Email"
+                                placeholder="your@email.com"
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -93,7 +93,7 @@ export class Registration extends Component {
                             <input
                                 type="password"
                                 name="password"
-                                placeholder="password"
+                                placeholder="Password"
                                 onChange={this.handleChange}
                             />
                         </div>
