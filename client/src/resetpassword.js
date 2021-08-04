@@ -28,9 +28,6 @@ export class ResetPassword extends Component {
         // when the btn gets clicked we want to make an axios request sending
         // over our value of state
         console.log("this.state in ResetPwd", this.state);
-        // this.setState({
-        //     view: this.state.view + 1,
-        // });
 
         if (this.state.view == 1) {
             axios
@@ -39,12 +36,13 @@ export class ResetPassword extends Component {
                     if (resp.data.success) {
                         this.setState({
                             view: this.state.view + 1,
+                            error: false,
+                            errMessage: "",
                         });
                     } else {
                         this.setState({
                             error: true,
                             errMessage: resp.data.errMessage,
-                            view: this.state.view + 1,
                         });
                     }
                 })
@@ -59,6 +57,22 @@ export class ResetPassword extends Component {
                     });
                 });
         }
+
+        // if (this.state.view == 2) {
+        //     axios
+        //         .post("/password/reset/verify", this.state)
+        //         .then((resp) => {})
+        //         .catch((err) => {
+        //             console.log(
+        //                 "something went wrong in POST /password/reset/verify",
+        //                 err
+        //             );
+        //             this.setState({
+        //                 error: true,
+        //                 errMessage: "Something went wrong",
+        //             });
+        //         });
+        // }
     }
     componentDidMount() {
         console.log("ResetPwd just mounted");
@@ -83,6 +97,7 @@ export class ResetPassword extends Component {
                                 name="email"
                                 placeholder="your@email.com"
                                 onChange={this.handleChange}
+                                key="email"
                             />
                         </div>
                         <button onClick={(e) => this.handleSubmit(e)}>
@@ -108,6 +123,7 @@ export class ResetPassword extends Component {
                                 name="code"
                                 placeholder="Code"
                                 onChange={this.handleChange}
+                                key="code"
                             />
                         </div>
                         <div>
@@ -117,6 +133,7 @@ export class ResetPassword extends Component {
                                 name="password"
                                 placeholder="Password"
                                 onChange={this.handleChange}
+                                key="password"
                             />
                         </div>
                         <button onClick={(e) => this.handleSubmit(e)}>

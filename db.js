@@ -18,3 +18,10 @@ module.exports.findUser = (email) => {
         [email]
     );
 };
+
+module.exports.insertCode = (emailData, codeData) => {
+    return db.query(`INSERT INTO reset_codes (email, code) VALUES ($1,$2);`, [
+        emailData,
+        codeData,
+    ]);
+};

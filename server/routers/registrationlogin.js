@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("../../bcrypt");
 const db = require("../../db");
+const cryptoRandomString = require("crypto-random-string");
+const ses = require("../ses");
+const secrets = require("../secrets");
 
 router.get("/user/id.json", function (req, res) {
     res.json({
@@ -134,8 +137,14 @@ router.post("/password/reset/start", (req, res) => {
                         "No user found associated with " + req.body.email,
                 });
             } else {
-                return res.json({
-                    success: false,
+                const secretCode = cryptoRandomString({
+                    length: 6,
+                });
+                return db.insertCode(req.body.email, secretCode).then(() => {
+                    return ses.sendEmail(secrets.email, secretCode).then(() => {
+                        console.log("Email has been sent");
+                        res.json({ success: true });
+                    });
                 });
             }
         })

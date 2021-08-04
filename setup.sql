@@ -8,4 +8,12 @@ CREATE TABLE users(
      hashed_password VARCHAR NOT NULL,
      timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  ); 
- 
+
+ DROP TABLE IF EXISTS users;
+
+  CREATE TABLE reset_codes(
+    id SERIAL PRIMARY KEY,
+    email VARCHAR NOT NULL REFERENCES users (email),
+    code VARCHAR NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );

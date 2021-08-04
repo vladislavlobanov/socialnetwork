@@ -13,21 +13,24 @@ const ses = new aws.SES({
     region: "us-east-1",
 });
 
-exports.sendEmail = function (recipient, message, subject) {
+exports.sendEmail = function (recipient, code) {
     return ses
         .sendEmail({
-            Source: "Social Network <vladislav.lobanov@outlook.com",
+            Source: "Social Network " + "<" + secrets.email + ">",
             Destination: {
                 ToAddresses: [recipient],
             },
             Message: {
                 Body: {
                     Text: {
-                        Data: "We can't wait to start working with you! Please arrive on Monday at 9:00 am. Dress code is casual so don't suit up.",
+                        Data:
+                            "Please use this code: " +
+                            code +
+                            " to reset your password",
                     },
                 },
                 Subject: {
-                    Data: "Your Application Has Been Accepted!",
+                    Data: "Password Reset",
                 },
             },
         })
