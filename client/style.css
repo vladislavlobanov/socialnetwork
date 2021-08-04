@@ -16,7 +16,7 @@ label {
     display: block;
 }
 
-.regForm {
+.regOrLoginForm {
     display: grid;
     grid-template-rows: max-content;
     gap: 10px;
@@ -52,4 +52,9 @@ label {
     background-color: darkkhaki;
     flex-grow: 3;
     flex-basis: 300px;
+}
+
+.regOrLoginForm button + div {
+    text-align: center;
+    font-weight: bold;
 }

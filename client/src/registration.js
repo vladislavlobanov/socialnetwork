@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class Registration extends Component {
     constructor() {
@@ -53,53 +54,61 @@ export class Registration extends Component {
 
     render() {
         return (
-            <section>
-                <form className="regForm">
-                    <div className="errWrapper">
-                        {this.state.error && (
-                            <h2 style={{ color: "red" }}>
-                                {this.state.errMessage}
-                            </h2>
-                        )}
-                    </div>
-                    <div>
-                        <label htmlFor="first">First Name</label>
-                        <input
-                            name="first"
-                            placeholder="First Name"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="last">Last Name</label>
-                        <input
-                            name="last"
-                            placeholder="Last Name"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            name="email"
-                            placeholder="Email"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="password"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <button onClick={(e) => this.handleSubmit(e)}>
-                        Register
-                    </button>
-                </form>
-            </section>
+            <>
+                <section>
+                    <form className="regOrLoginForm">
+                        <div className="errWrapper">
+                            {this.state.error && (
+                                <h2 style={{ color: "red" }}>
+                                    {this.state.errMessage}
+                                </h2>
+                            )}
+                        </div>
+                        <div>
+                            <label htmlFor="first">First Name</label>
+                            <input
+                                name="first"
+                                placeholder="First Name"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="last">Last Name</label>
+                            <input
+                                name="last"
+                                placeholder="Last Name"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="email">Email</label>
+                            <input
+                                name="email"
+                                placeholder="Email"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <button onClick={(e) => this.handleSubmit(e)}>
+                            Register
+                        </button>
+                        <div>
+                            Are you already registered?
+                            <p>
+                                Click to <Link to="/login">here</Link> log in!
+                            </p>
+                        </div>
+                    </form>
+                </section>
+            </>
         );
     }
 }
