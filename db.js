@@ -19,6 +19,14 @@ module.exports.findUser = (email) => {
     );
 };
 
+module.exports.findUserById = (id) => {
+    return db.query(
+        `SELECT * FROM users
+        WHERE id = ($1);`,
+        [id]
+    );
+};
+
 module.exports.insertCode = (emailData, codeData) => {
     return db.query(`INSERT INTO reset_codes (email, code) VALUES ($1,$2);`, [
         emailData,

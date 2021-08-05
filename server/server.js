@@ -3,6 +3,7 @@ const app = express();
 const compression = require("compression");
 const path = require("path");
 const registerLogin = require("./routers/registrationlogin");
+const user = require("./routers/userdata");
 const cookieSession = require("cookie-session");
 const secrets = require("./secrets");
 
@@ -21,6 +22,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, "..", "client", "public")));
 
 app.use(registerLogin);
+app.use(user);
 
 // this should be our last route in the server!
 app.get("*", function (req, res) {

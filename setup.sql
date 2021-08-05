@@ -6,6 +6,7 @@ CREATE TABLE users(
      last VARCHAR NOT NULL,
      email VARCHAR UNIQUE NOT NULL,
      hashed_password VARCHAR NOT NULL,
+     img_url VARCHAR,
      timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
  ); 
 

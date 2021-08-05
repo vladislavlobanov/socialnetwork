@@ -63,3 +63,7 @@ label {
     text-align: center;
     font-weight: bold;
 }
+
+.profilePic {
+    width: 100px;
+}
