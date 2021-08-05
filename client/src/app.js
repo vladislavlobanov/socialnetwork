@@ -11,9 +11,11 @@ export default class App extends Component {
             first: "",
             last: "",
             imageUrl: "",
+            userId: "",
             uploaderIsVisible: false,
         };
         this.toggleModal = this.toggleModal.bind(this);
+        this.methodInApp = this.methodInApp.bind(this);
     }
 
     async componentDidMount() {
@@ -23,6 +25,7 @@ export default class App extends Component {
                 first: resp.data.first,
                 last: resp.data.last,
                 imageUrl: resp.data.profileImg,
+                userId: resp.data.userId,
             });
         } catch (err) {
             console.log("Err in axios get /user: ", err);
@@ -43,6 +46,9 @@ export default class App extends Component {
             "methodInApp is running! Argument passed to it is --> ",
             arg
         );
+        this.setState({
+            imageUrl: arg,
+        });
         // make sure you set the imageUrl you received from uploader in state!
     }
 
@@ -64,7 +70,10 @@ export default class App extends Component {
                 </h2> */}
 
                 {this.state.uploaderIsVisible && (
-                    <Uploader methodInApp={this.methodInApp} />
+                    <Uploader
+                        methodInApp={this.methodInApp}
+                        userId={this.state.userId}
+                    />
                 )}
             </div>
         );

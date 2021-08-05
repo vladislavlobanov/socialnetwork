@@ -48,3 +48,10 @@ module.exports.updatePassword = (emailData, hashedPwd) => {
         [emailData, hashedPwd]
     );
 };
+
+module.exports.insertProfilePic = (imgName, userId) => {
+    return db.query(
+        `UPDATE users SET img_url = ($1) WHERE id = ($2) RETURNING img_url;`,
+        ["https://s3.amazonaws.com/socialnetwork-spiced2021/" + imgName, userId]
+    );
+};

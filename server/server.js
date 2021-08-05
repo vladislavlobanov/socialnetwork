@@ -7,6 +7,7 @@ const user = require("./routers/userdata");
 const cookieSession = require("cookie-session");
 const secrets = require("./secrets");
 
+app.use(express.static("./uploads"));
 app.use(express.json());
 
 app.use(
