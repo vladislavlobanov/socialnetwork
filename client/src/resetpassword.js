@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class ResetPassword extends Component {
     constructor() {
@@ -58,21 +59,34 @@ export class ResetPassword extends Component {
                 });
         }
 
-        // if (this.state.view == 2) {
-        //     axios
-        //         .post("/password/reset/verify", this.state)
-        //         .then((resp) => {})
-        //         .catch((err) => {
-        //             console.log(
-        //                 "something went wrong in POST /password/reset/verify",
-        //                 err
-        //             );
-        //             this.setState({
-        //                 error: true,
-        //                 errMessage: "Something went wrong",
-        //             });
-        //         });
-        // }
+        if (this.state.view == 2) {
+            axios
+                .post("/password/reset/verify", this.state)
+                .then((resp) => {
+                    if (resp.data.success) {
+                        this.setState({
+                            view: this.state.view + 1,
+                            error: false,
+                            errMessage: "",
+                        });
+                    } else {
+                        this.setState({
+                            error: true,
+                            errMessage: resp.data.errMessage,
+                        });
+                    }
+                })
+                .catch((err) => {
+                    console.log(
+                        "something went wrong in POST /password/reset/verify",
+                        err
+                    );
+                    this.setState({
+                        error: true,
+                        errMessage: "Something went wrong",
+                    });
+                });
+        }
     }
     componentDidMount() {
         console.log("ResetPwd just mounted");
@@ -84,13 +98,18 @@ export class ResetPassword extends Component {
             return (
                 <section>
                     <form className="regOrLoginForm">
-                        <div className="errWrapper">
-                            {this.state.error && (
-                                <h2 style={{ color: "red" }}>
-                                    {this.state.errMessage}
-                                </h2>
-                            )}
+                        <h1>Reset Password</h1>
+                        <div className="infoMessagesGrid">
+                            Please provide the email address with which you
+                            registered
                         </div>
+
+                        {this.state.error && (
+                            <h2 style={{ color: "red" }}>
+                                {this.state.errMessage}
+                            </h2>
+                        )}
+
                         <div>
                             <label htmlFor="email">Email</label>
                             <input
@@ -110,12 +129,14 @@ export class ResetPassword extends Component {
             return (
                 <section>
                     <form className="regOrLoginForm">
-                        <div className="errWrapper">
-                            {this.state.error && (
-                                <h2 style={{ color: "red" }}>
-                                    {this.state.errMessage}
-                                </h2>
-                            )}
+                        <h1>Reset Password</h1>
+                        {this.state.error && (
+                            <h2 style={{ color: "red" }}>
+                                {this.state.errMessage}
+                            </h2>
+                        )}
+                        <div className="infoMessagesGrid">
+                            Please enter the code you received
                         </div>
                         <div>
                             <label htmlFor="code">Code</label>
@@ -125,6 +146,9 @@ export class ResetPassword extends Component {
                                 onChange={this.handleChange}
                                 key="code"
                             />
+                        </div>
+                        <div className="infoMessagesGrid">
+                            Please enter a new password
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>
@@ -143,12 +167,14 @@ export class ResetPassword extends Component {
                 </section>
             );
         } else if (this.state.view === 3) {
-            // remember to also add a link to login ;)
             return (
                 <section>
                     <form className="regOrLoginForm">
-                        <div>Success!</div>
-                        <div>You can now log in with your new password</div>
+                        <h1>Success!</h1>
+                        <div className="infoMessagesGrid">
+                            You can now <Link to="/login">log in</Link> with
+                            your new password
+                        </div>
                     </form>
                 </section>
             );

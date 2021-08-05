@@ -11,7 +11,6 @@ export default function Welcome() {
             <div className="mainContainer">
                 <div className="leftSide">
                     <Logo />
-                    <h1>Welcome!</h1>
                     <HashRouter>
                         <div>
                             <Route exact path="/" component={Registration} />

@@ -25,3 +25,18 @@ module.exports.insertCode = (emailData, codeData) => {
         codeData,
     ]);
 };
+
+module.exports.selectCodes = (emailData) => {
+    return db.query(
+        `SELECT * FROM reset_codes
+        WHERE CURRENT_TIMESTAMP - timestamp < INTERVAL '10 minutes' AND  email = ($1);`,
+        [emailData]
+    );
+};
+
+module.exports.updatePassword = (emailData, hashedPwd) => {
+    return db.query(
+        `UPDATE users SET hashed_password = ($2) WHERE email = ($1);`,
+        [emailData, hashedPwd]
+    );
+};

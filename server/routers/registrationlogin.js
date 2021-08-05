@@ -59,11 +59,12 @@ router.post("/register", (req, res) => {
                         req.body.email +
                         ` already exists`,
                 });
+            } else {
+                res.json({
+                    success: false,
+                    errMessage: "Something went wrong",
+                });
             }
-            res.json({
-                success: false,
-                errMessage: "Something went wrong",
-            });
         });
 });
 
@@ -146,6 +147,53 @@ router.post("/password/reset/start", (req, res) => {
                         res.json({ success: true });
                     });
                 });
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+            res.json({
+                success: false,
+                errMessage: "Something went wrong",
+            });
+        });
+});
+
+router.post("/password/reset/verify", (req, res) => {
+    if (!req.body.code || !req.body.password) {
+        return res.json({
+            success: false,
+            errMessage: "Please fill in all fields!",
+        });
+    }
+
+    db.selectCodes(req.body.email)
+        .then((results) => {
+            if (results.rows.length == 0) {
+                return res.json({
+                    success: false,
+                    errMessage:
+                        "Code has expired. Please go back and start the process again",
+                });
+            } else {
+                for (let i = results.rows.length - 1; i >= 0; i--) {
+                    //checking if the last sent code is valid
+                    if (results.rows[i].code === req.body.code) {
+                        return bcrypt
+                            .hash(req.body.password)
+                            .then((hashPwd) => {
+                                return db
+                                    .updatePassword(req.body.email, hashPwd)
+                                    .then(() => {
+                                        res.json({ success: true });
+                                    });
+                            });
+                    } else {
+                        return res.json({
+                            success: false,
+                            errMessage: "Please enter the last code received",
+                        });
+                    }
+                }
             }
         })
         .catch((err) => {

@@ -56,13 +56,14 @@ export class Login extends Component {
         return (
             <section>
                 <form className="regOrLoginForm">
-                    <div className="errWrapper">
-                        {this.state.error && (
-                            <h2 style={{ color: "red" }}>
-                                {this.state.errMessage}
-                            </h2>
-                        )}
-                    </div>
+                    <h1>Log in</h1>
+
+                    {this.state.error && (
+                        <h2 style={{ color: "red" }}>
+                            {this.state.errMessage}
+                        </h2>
+                    )}
+
                     <div>
                         <label htmlFor="email">Email</label>
                         <input

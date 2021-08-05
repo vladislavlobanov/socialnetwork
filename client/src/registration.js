@@ -57,13 +57,13 @@ export class Registration extends Component {
             <>
                 <section>
                     <form className="regOrLoginForm">
-                        <div className="errWrapper">
-                            {this.state.error && (
-                                <h2 style={{ color: "red" }}>
-                                    {this.state.errMessage}
-                                </h2>
-                            )}
-                        </div>
+                        <h1>Welcome!</h1>
+                        {this.state.error && (
+                            <h2 style={{ color: "red" }}>
+                                {this.state.errMessage}
+                            </h2>
+                        )}
+
                         <div>
                             <label htmlFor="first">First Name</label>
                             <input
