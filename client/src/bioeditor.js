@@ -14,7 +14,8 @@ export default class BioEditor extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    async textareaToggle() {
+    async textareaToggle(e) {
+        e.preventDefault();
         if (this.state.buttonText == "Update") {
             this.setState({
                 isDisabled: true,
@@ -72,7 +73,7 @@ export default class BioEditor extends Component {
                     <>
                         <p>{this.props.bio}</p>
                         {!this.state.editorIsVisible ? (
-                            <a onClick={this.textareaToggle} href="#">
+                            <a onClick={this.textareaToggle} href="">
                                 Edit
                             </a>
                         ) : (
@@ -95,7 +96,7 @@ export default class BioEditor extends Component {
                 ) : (
                     <>
                         {!this.state.editorIsVisible ? (
-                            <a onClick={this.textareaToggle} href="#">
+                            <a onClick={this.textareaToggle} href="">
                                 Add your bio now
                             </a>
                         ) : (
