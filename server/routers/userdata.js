@@ -12,6 +12,7 @@ router.get("/user", async (req, res) => {
             last: results.rows[0].last,
             profileImg: results.rows[0].img_url,
             userId: results.rows[0].id,
+            bio: results.rows[0].bio,
         });
     } catch (err) {
         console.log("Error in get /user db query: ", err);
@@ -32,24 +33,17 @@ router.post(
         } catch (err) {
             console.log("Error in post /upload db query: ", err);
         }
-
-        // db.insertImages(
-        //     req.body.title,
-        //     req.body.desc,
-        //     req.body.username,
-        //     req.file.filename
-        // )
-        //     .then((results) => {
-        //         res.json({
-        //             title: results.rows[0].title,
-        //             description: results.rows[0].description,
-        //             username: results.rows[0].username,
-        //             url: results.rows[0].url,
-        //             id: results.rows[0].id,
-        //         });
-        //     })
-        //     .catch((err) => console.log(err));
     }
 );
+
+router.post("/updatebio", async (req, res) => {
+    try {
+        const results = await db.updateBio(req.body.id, req.body.bio);
+
+        res.json({ bio: results.rows[0].bio });
+    } catch (err) {
+        console.log("Error in post /updatebio db query: ", err);
+    }
+});
 
 module.exports = router;

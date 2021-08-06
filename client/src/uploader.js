@@ -26,9 +26,11 @@ export default class Uploader extends Component {
         formData.append("file", target.files[0]);
 
         try {
+            this.props.loaderinApp(true);
             const resp = await axios.post("/upload", formData);
             console.log(resp.data.imgUrl);
             this.props.methodInApp(resp.data.imgUrl);
+            this.props.loaderinApp(false);
         } catch (err) {
             console.log("Err in axios get /user: ", err);
         }

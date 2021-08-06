@@ -13,7 +13,7 @@ module.exports.registration = (first, last, email, password) => {
 
 module.exports.findUser = (email) => {
     return db.query(
-        `SELECT * FROM users
+        `SELECT hashed_password, id FROM users
         WHERE email = ($1);`,
         [email]
     );
@@ -21,7 +21,7 @@ module.exports.findUser = (email) => {
 
 module.exports.findUserById = (id) => {
     return db.query(
-        `SELECT * FROM users
+        `SELECT first, last, img_url, id, bio FROM users
         WHERE id = ($1);`,
         [id]
     );
@@ -36,7 +36,7 @@ module.exports.insertCode = (emailData, codeData) => {
 
 module.exports.selectCodes = (emailData) => {
     return db.query(
-        `SELECT * FROM reset_codes
+        `SELECT code FROM reset_codes
         WHERE CURRENT_TIMESTAMP - timestamp < INTERVAL '10 minutes' AND  email = ($1);`,
         [emailData]
     );
@@ -46,6 +46,13 @@ module.exports.updatePassword = (emailData, hashedPwd) => {
     return db.query(
         `UPDATE users SET hashed_password = ($2) WHERE email = ($1);`,
         [emailData, hashedPwd]
+    );
+};
+
+module.exports.updateBio = (id, bio) => {
+    return db.query(
+        `UPDATE users SET bio = ($2) WHERE id = ($1) RETURNING bio;`,
+        [id, bio]
     );
 };
 
