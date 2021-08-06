@@ -29,29 +29,37 @@ export default class Uploader extends Component {
             this.props.loaderinApp(true);
             const resp = await axios.post("/upload", formData);
             console.log(resp.data.imgUrl);
-            this.props.methodInApp(resp.data.imgUrl);
+            this.props.updateImgMethod(resp.data.imgUrl);
             this.props.loaderinApp(false);
         } catch (err) {
             console.log("Err in axios get /user: ", err);
         }
     }
 
+    stopPropagation(e) {
+        e.stopPropagation();
+    }
+
     render() {
         return (
-            <div>
-                <h2 className="uploader-text">
-                    Want to change your profile pic?
-                </h2>
+            <div onClick={this.props.toggleMethod} className="modal">
+                <div onClick={this.stopPropagation} className="modalContainer">
+                    <p
+                        onClick={this.props.toggleMethod}
+                        className="closeButton"
+                    >
+                        X
+                    </p>
 
-                <h2 onClick={() => this.methodInUploader()}>
-                    Click here to run method in uploader!
-                </h2>
-                <input
-                    type="file"
-                    id="file"
-                    accept="image/*"
-                    onChange={(e) => this.handleFileSelection(e)}
-                />
+                    <h2>Want to change your profile pic?</h2>
+
+                    <input
+                        type="file"
+                        id="file"
+                        accept="image/*"
+                        onChange={(e) => this.handleFileSelection(e)}
+                    />
+                </div>
             </div>
         );
     }

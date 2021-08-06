@@ -18,7 +18,7 @@ export default class App extends Component {
             loader: false, //shows loading bar when pic is updating - testing this
         };
         this.toggleModal = this.toggleModal.bind(this);
-        this.methodInApp = this.methodInApp.bind(this);
+        this.updateImgMethod = this.updateImgMethod.bind(this);
         this.loaderMethod = this.loaderMethod.bind(this);
         this.updateBioMethod = this.updateBioMethod.bind(this);
     }
@@ -49,11 +49,7 @@ export default class App extends Component {
 
     // this fn is responsible for receiving your imageUrl from uploader
     // and then storing it to its state
-    methodInApp(arg) {
-        console.log(
-            "methodInApp is running! Argument passed to it is --> ",
-            arg
-        );
+    updateImgMethod(arg) {
         this.setState({
             imageUrl: arg,
         });
@@ -74,7 +70,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="mainContainerApp">
                 <Logo />
                 <h1>Hello from App!</h1>
 
@@ -85,18 +81,6 @@ export default class App extends Component {
                     toggleMethod={this.toggleModal}
                     loaderStatus={this.state.loader}
                 />
-
-                {/* <h2 onClick={() => this.toggleModal()}>
-                    Click here to toggle uploader visibility
-                </h2> */}
-
-                {this.state.uploaderIsVisible && (
-                    <Uploader
-                        methodInApp={this.methodInApp}
-                        loaderinApp={this.loaderMethod}
-                        userId={this.state.userId}
-                    />
-                )}
                 <Profile
                     firstProfile={this.state.first}
                     lastProfile={this.state.last}
@@ -107,6 +91,18 @@ export default class App extends Component {
                     loaderStatusProfile={this.state.loader}
                     updateBioMethodProfile={this.updateBioMethod}
                 />
+                {/* <h2 onClick={() => this.toggleModal()}>
+                    Click here to toggle uploader visibility
+                </h2> */}
+
+                {this.state.uploaderIsVisible && (
+                    <Uploader
+                        updateImgMethod={this.updateImgMethod}
+                        loaderinApp={this.loaderMethod}
+                        userId={this.state.userId}
+                        toggleMethod={this.toggleModal}
+                    />
+                )}
             </div>
         );
     }

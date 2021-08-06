@@ -65,11 +65,11 @@ label {
 }
 
 .profilePic {
-    width: 100px;
+    width: 120px;
 }
 
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
+    border: 16px solid red; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
     width: 120px;
@@ -88,4 +88,31 @@ label {
 
 .profileComponent img {
     width: 300px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(81, 183, 230, 0.603);
+    width: 100%;
+    height: 100vh;
+}
+.modalContainer {
+    position: fixed;
+    display: grid;
+    grid-template-rows: 20px 100px 100px;
+    background-color: burlywood;
+    width: 500px;
+    height: 320px;
+    justify-items: center;
+}
+
+.closeButton {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    justify-self: end;
 }
