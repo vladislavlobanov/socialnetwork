@@ -8,7 +8,7 @@ export default class BioEditor extends Component {
             editorIsVisible: false,
             draftBio: "",
             buttonText: "Close",
-            isDisabled: false, //Disabled upload button while await for DB query to finish
+            showBio: true,
         };
         this.textareaToggle = this.textareaToggle.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -16,16 +16,14 @@ export default class BioEditor extends Component {
 
     async textareaToggle(e) {
         e.preventDefault();
+
         if (this.state.buttonText == "Update") {
-            this.setState({
-                isDisabled: true,
-            });
             try {
                 await this.functionToUpdateDatabaseWithNewBio();
                 this.setState({
                     editorIsVisible: !this.state.editorIsVisible,
+                    showBio: !this.state.showBio,
                     buttonText: "Close",
-                    isDisabled: false,
                 });
             } catch (err) {
                 console.log("Err in updating bio in handleChange: ", err);
@@ -33,8 +31,8 @@ export default class BioEditor extends Component {
         } else {
             this.setState({
                 editorIsVisible: !this.state.editorIsVisible,
+                showBio: !this.state.showBio,
                 buttonText: "Close",
-                isDisabled: false,
             });
         }
     }
@@ -68,30 +66,32 @@ export default class BioEditor extends Component {
     render() {
         return (
             <div>
-                BIO EDITOR
                 {this.props.bio ? (
                     <>
-                        <p>{this.props.bio}</p>
-                        {!this.state.editorIsVisible ? (
-                            <a onClick={this.textareaToggle} href="">
-                                Edit
-                            </a>
-                        ) : (
-                            <>
-                                <textarea
-                                    defaultValue={this.props.bio}
-                                    onChange={this.handleChange}
-                                />
-                                <button
-                                    onClick={this.textareaToggle}
-                                    disabled={this.state.isDisabled}
-                                >
-                                    {!this.state.editorIsVisible
-                                        ? "Close"
-                                        : this.state.buttonText}
-                                </button>
-                            </>
-                        )}
+                        <p>
+                            {this.state.showBio && (
+                                <>{this.props.bio + " – "}</>
+                            )}
+
+                            {!this.state.editorIsVisible ? (
+                                <a onClick={this.textareaToggle} href="">
+                                    {" "}
+                                    Edit
+                                </a>
+                            ) : (
+                                <div className="bioContainer">
+                                    <textarea
+                                        defaultValue={this.props.bio}
+                                        onChange={this.handleChange}
+                                    />
+                                    <button onClick={this.textareaToggle}>
+                                        {!this.state.editorIsVisible
+                                            ? "Close"
+                                            : this.state.buttonText}
+                                    </button>
+                                </div>
+                            )}
+                        </p>
                     </>
                 ) : (
                     <>
@@ -100,17 +100,14 @@ export default class BioEditor extends Component {
                                 Add your bio now
                             </a>
                         ) : (
-                            <>
+                            <div className="bioContainer">
                                 <textarea onChange={this.handleChange} />
-                                <button
-                                    disabled={this.state.isDisabled}
-                                    onClick={this.textareaToggle}
-                                >
+                                <button onClick={this.textareaToggle}>
                                     {!this.state.editorIsVisible
                                         ? "Close"
                                         : this.state.buttonText}
                                 </button>
-                            </>
+                            </div>
                         )}
                     </>
                 )}

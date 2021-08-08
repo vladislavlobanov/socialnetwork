@@ -71,30 +71,28 @@ export default class App extends Component {
     render() {
         return (
             <div className="mainContainerApp">
-                <Logo />
-                <h1>Hello from App!</h1>
-
-                <ProfilePic
-                    first={this.state.first}
-                    last={this.state.last}
-                    imageUrl={this.state.imageUrl}
-                    toggleMethod={this.toggleModal}
-                    loaderStatus={this.state.loader}
-                />
-                <Profile
-                    firstProfile={this.state.first}
-                    lastProfile={this.state.last}
-                    imageUrlProfile={this.state.imageUrl}
-                    bioProfile={this.state.bio}
-                    userIdProfile={this.state.userId}
-                    toggleMethodProfile={this.toggleModal}
-                    loaderStatusProfile={this.state.loader}
-                    updateBioMethodProfile={this.updateBioMethod}
-                />
-                {/* <h2 onClick={() => this.toggleModal()}>
-                    Click here to toggle uploader visibility
-                </h2> */}
-
+                <header>
+                    <Logo />
+                    <ProfilePic
+                        first={this.state.first}
+                        last={this.state.last}
+                        imageUrl={this.state.imageUrl}
+                        toggleMethod={this.toggleModal}
+                        loaderStatus={this.state.loader}
+                    />
+                </header>
+                <section className="profileSection">
+                    <Profile
+                        firstProfile={this.state.first}
+                        lastProfile={this.state.last}
+                        imageUrlProfile={this.state.imageUrl}
+                        bioProfile={this.state.bio}
+                        userIdProfile={this.state.userId}
+                        toggleMethodProfile={this.toggleModal}
+                        loaderStatusProfile={this.state.loader}
+                        updateBioMethodProfile={this.updateBioMethod}
+                    />
+                </section>
                 {this.state.uploaderIsVisible && (
                     <Uploader
                         updateImgMethod={this.updateImgMethod}

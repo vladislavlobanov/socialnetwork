@@ -13,23 +13,25 @@ export default function Profile({
 }) {
     return (
         <div className="profileComponent">
-            <h1>USER PROFILE COMPONENT</h1>
-            <h3>
-                Hello my name is {firstProfile} {lastProfile}
-            </h3>
-
-            <ProfilePic
-                first={firstProfile}
-                last={lastProfile}
-                imageUrl={imageUrlProfile}
-                toggleMethod={toggleMethodProfile}
-                loaderStatus={loaderStatusProfile}
-            />
-            <BioEditor
-                bio={bioProfile}
-                userId={userIdProfile}
-                updateBioMethod={updateBioMethodProfile}
-            />
+            <div className="profileAndText">
+                <ProfilePic
+                    first={firstProfile}
+                    last={lastProfile}
+                    imageUrl={imageUrlProfile}
+                    toggleMethod={toggleMethodProfile}
+                    loaderStatus={loaderStatusProfile}
+                />
+                <div className="profileAndText right">
+                    <h3>
+                        {firstProfile} {lastProfile}
+                    </h3>
+                    <BioEditor
+                        bio={bioProfile}
+                        userId={userIdProfile}
+                        updateBioMethod={updateBioMethodProfile}
+                    />
+                </div>
+            </div>
         </div>
     );
 }
