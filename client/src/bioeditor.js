@@ -68,7 +68,7 @@ export default class BioEditor extends Component {
             <div>
                 {this.props.bio ? (
                     <>
-                        <p>
+                        <div>
                             {this.state.showBio && (
                                 <>{this.props.bio + " – "}</>
                             )}
@@ -91,7 +91,7 @@ export default class BioEditor extends Component {
                                     </button>
                                 </div>
                             )}
-                        </p>
+                        </div>
                     </>
                 ) : (
                     <>

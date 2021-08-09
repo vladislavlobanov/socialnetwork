@@ -79,6 +79,8 @@ label {
     width: 100px;
     height: 100px;
     cursor: pointer;
+    object-fit: cover;
+    object-position: center;
 }
 
 .noCursor {
@@ -183,6 +185,8 @@ header > .loaderContainer {
     width: 250px;
     height: 250px;
     border: 1px rgb(195, 195, 195) dashed;
+    object-fit: cover;
+    object-position: center;
 }
 
 .modal {
