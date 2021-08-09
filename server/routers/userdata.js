@@ -29,9 +29,13 @@ router.get("/user/:id.json", async (req, res) => {
             profileImg: results.rows[0].img_url,
             userId: results.rows[0].id,
             bio: results.rows[0].bio,
+            success: true,
         });
     } catch (err) {
         console.log("Error in get /user db query: ", err);
+        res.json({
+            success: false,
+        });
     }
 });
 

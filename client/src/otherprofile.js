@@ -18,14 +18,18 @@ export default class OtherProfile extends Component {
         try {
             this.setState({ loader: true });
             const results = await axios.get("/user/" + this.state.id + ".json");
-            this.setState({
-                first: results.data.first,
-                last: results.data.last,
-                bio: results.data.bio,
-                imgUrl: results.data.profileImg,
-                id: results.data.userId,
-                loader: false,
-            });
+            if (results.data.success) {
+                this.setState({
+                    first: results.data.first,
+                    last: results.data.last,
+                    bio: results.data.bio,
+                    imgUrl: results.data.profileImg,
+                    id: results.data.userId,
+                    loader: false,
+                });
+            } else {
+                this.props.history.push("/");
+            }
         } catch (err) {
             console.log("Err in axios get /otherprofile: ", err);
         }
