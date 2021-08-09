@@ -21,8 +21,13 @@ router.get("/user", async (req, res) => {
 
 router.get("/user/:id.json", async (req, res) => {
     try {
-        const results = await db.findUserById(req.params.id);
+        if (req.session.userId == req.params.id) {
+            return res.json({
+                success: false,
+            });
+        }
 
+        const results = await db.findUserById(req.params.id);
         res.json({
             first: results.rows[0].first,
             last: results.rows[0].last,
