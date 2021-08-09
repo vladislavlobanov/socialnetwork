@@ -3,7 +3,9 @@ import Logo from "./logo";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
+import OtherProfile from "./otherprofile";
 import axios from "axios";
+import { BrowserRouter, Route } from "react-router-dom";
 
 export default class App extends Component {
     constructor() {
@@ -82,16 +84,25 @@ export default class App extends Component {
                     />
                 </header>
                 <section className="profileSection">
-                    <Profile
-                        firstProfile={this.state.first}
-                        lastProfile={this.state.last}
-                        imageUrlProfile={this.state.imageUrl}
-                        bioProfile={this.state.bio}
-                        userIdProfile={this.state.userId}
-                        toggleMethodProfile={this.toggleModal}
-                        loaderStatusProfile={this.state.loader}
-                        updateBioMethodProfile={this.updateBioMethod}
-                    />
+                    <BrowserRouter>
+                        <>
+                            <Route exact path="/">
+                                <Profile
+                                    firstProfile={this.state.first}
+                                    lastProfile={this.state.last}
+                                    imageUrlProfile={this.state.imageUrl}
+                                    bioProfile={this.state.bio}
+                                    userIdProfile={this.state.userId}
+                                    toggleMethodProfile={this.toggleModal}
+                                    loaderStatusProfile={this.state.loader}
+                                    updateBioMethodProfile={
+                                        this.updateBioMethod
+                                    }
+                                />
+                            </Route>
+                            <Route path="/user/:id" component={OtherProfile} />
+                        </>
+                    </BrowserRouter>
                 </section>
                 {this.state.uploaderIsVisible && (
                     <Uploader

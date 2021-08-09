@@ -19,6 +19,22 @@ router.get("/user", async (req, res) => {
     }
 });
 
+router.get("/user/:id.json", async (req, res) => {
+    try {
+        const results = await db.findUserById(req.params.id);
+
+        res.json({
+            first: results.rows[0].first,
+            last: results.rows[0].last,
+            profileImg: results.rows[0].img_url,
+            userId: results.rows[0].id,
+            bio: results.rows[0].bio,
+        });
+    } catch (err) {
+        console.log("Error in get /user db query: ", err);
+    }
+});
+
 router.post(
     "/upload",
     uploader.single("file"),

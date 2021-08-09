@@ -10,9 +10,24 @@ export default function ProfilePic({
     // console.log("props - info passed down from parent (App) --> ", props);
     imageUrl = imageUrl || "user.svg";
     return (
-        <div>
+        <>
             {loaderStatus ? (
-                <div className="loader"></div>
+                <div className="loaderContainer">
+                    <div className="lds-spinner">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             ) : (
                 <img
                     className="profilePic"
@@ -21,7 +36,7 @@ export default function ProfilePic({
                     onClick={() => toggleMethod()}
                 />
             )}
-        </div>
+        </>
     );
 }
 
