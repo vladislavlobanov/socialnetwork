@@ -18,6 +18,13 @@ header {
     padding-top: 10px;
 }
 
+.headerRightSide {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
 .logo {
     height: 150px;
 }
@@ -316,4 +323,32 @@ header > .loaderContainer {
 
 .bioContainer button {
     width: fit-content;
+}
+
+.findPeople {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.organizeNamePhoto {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.findPeople.organizeNamePhoto img {
+    width: 100px;
+    height: 100px;
+    cursor: default;
+    object-fit: cover;
+    object-position: center;
+}
+
+.findPeople input {
+    width: 150px;
+}
+
+section {
+    padding-bottom: 20px;
 }

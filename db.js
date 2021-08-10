@@ -62,3 +62,20 @@ module.exports.insertProfilePic = (imgName, userId) => {
         ["https://s3.amazonaws.com/socialnetwork-spiced2021/" + imgName, userId]
     );
 };
+
+module.exports.lastUsers = () => {
+    return db.query(
+        `SELECT id, first, last, img_url FROM users
+        ORDER BY id DESC
+        LIMIT 3;`
+    );
+};
+
+module.exports.searchUsers = (val) => {
+    return db.query(
+        `SELECT id, first, last, img_url FROM users 
+        WHERE (first || ' ' || last) ILIKE $1  
+        LIMIT 5;`,
+        [val + "%"]
+    );
+};

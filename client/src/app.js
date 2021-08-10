@@ -4,8 +4,9 @@ import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
 import OtherProfile from "./otherprofile";
+import FindPeople from "./findpeople";
 import axios from "axios";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 export default class App extends Component {
     constructor() {
@@ -18,6 +19,7 @@ export default class App extends Component {
             bio: "",
             uploaderIsVisible: false,
             loader: false, //shows loading bar when pic is updating - testing this
+            // currentUrl: window.location.pathname,
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.updateImgMethod = this.updateImgMethod.bind(this);
@@ -72,56 +74,56 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="mainContainerApp">
-                <header>
-                    <Logo />
-                    <ProfilePic
-                        first={this.state.first}
-                        last={this.state.last}
-                        imageUrl={this.state.imageUrl}
-                        toggleMethod={this.toggleModal}
-                        loaderStatus={this.state.loader}
-                    />
-                </header>
-                <section className="profileSection">
-                    <BrowserRouter>
-                        <>
-                            <Route exact path="/">
-                                <Profile
-                                    firstProfile={this.state.first}
-                                    lastProfile={this.state.last}
-                                    imageUrlProfile={this.state.imageUrl}
-                                    bioProfile={this.state.bio}
-                                    userIdProfile={this.state.userId}
-                                    toggleMethodProfile={this.toggleModal}
-                                    loaderStatusProfile={this.state.loader}
-                                    updateBioMethodProfile={
-                                        this.updateBioMethod
-                                    }
-                                />
-                            </Route>
-                            <Route
-                                path="/user/:id"
-                                render={(props) => (
-                                    <OtherProfile
-                                        key={props.match.url}
-                                        match={props.match}
-                                        history={props.history}
-                                    />
-                                )}
+            <BrowserRouter>
+                <div className="mainContainerApp">
+                    <header>
+                        <Logo />
+                        <div className="headerRightSide">
+                            <Link to="/users">Find people</Link>
+                            <ProfilePic
+                                first={this.state.first}
+                                last={this.state.last}
+                                imageUrl={this.state.imageUrl}
+                                toggleMethod={this.toggleModal}
+                                loaderStatus={this.state.loader}
                             />
-                        </>
-                    </BrowserRouter>
-                </section>
-                {this.state.uploaderIsVisible && (
-                    <Uploader
-                        updateImgMethod={this.updateImgMethod}
-                        loaderinApp={this.loaderMethod}
-                        userId={this.state.userId}
-                        toggleMethod={this.toggleModal}
-                    />
-                )}
-            </div>
+                        </div>
+                    </header>
+                    <section className="profileSection">
+                        <Route exact path="/">
+                            <Profile
+                                firstProfile={this.state.first}
+                                lastProfile={this.state.last}
+                                imageUrlProfile={this.state.imageUrl}
+                                bioProfile={this.state.bio}
+                                userIdProfile={this.state.userId}
+                                toggleMethodProfile={this.toggleModal}
+                                loaderStatusProfile={this.state.loader}
+                                updateBioMethodProfile={this.updateBioMethod}
+                            />
+                        </Route>
+                        <Route
+                            path="/user/:id"
+                            render={(props) => (
+                                <OtherProfile
+                                    key={props.match.url}
+                                    match={props.match}
+                                    history={props.history}
+                                />
+                            )}
+                        />
+                        <Route path="/users" component={FindPeople} />
+                    </section>
+                    {this.state.uploaderIsVisible && (
+                        <Uploader
+                            updateImgMethod={this.updateImgMethod}
+                            loaderinApp={this.loaderMethod}
+                            userId={this.state.userId}
+                            toggleMethod={this.toggleModal}
+                        />
+                    )}
+                </div>
+            </BrowserRouter>
         );
     }
 }
