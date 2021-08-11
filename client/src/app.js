@@ -76,56 +76,61 @@ export default class App extends Component {
         return (
             <BrowserRouter>
                 <div className="mainContainerApp">
-                    <header>
-                        <Logo />
-                        <div className="headerRightSide">
-                            <Link to="/users">Find people</Link>
-                            <div className="profilePicContainer">
-                                {this.state.imageUrl ? (
-                                    <ProfilePic
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        imageUrl={this.state.imageUrl}
-                                        toggleMethod={this.toggleModal}
-                                        loaderStatus={this.state.loader}
+                    {this.state.userId ? (
+                        <>
+                            <header>
+                                <Logo />
+                                <div className="headerRightSide">
+                                    <Link to="/users">Find people</Link>
+                                    <div className="profilePicContainer">
+                                        <ProfilePic
+                                            first={this.state.first}
+                                            last={this.state.last}
+                                            imageUrl={this.state.imageUrl}
+                                            toggleMethod={this.toggleModal}
+                                            loaderStatus={this.state.loader}
+                                        />
+                                    </div>
+                                </div>
+                            </header>
+                            <section className="profileSection">
+                                <Route exact path="/">
+                                    <Profile
+                                        firstProfile={this.state.first}
+                                        lastProfile={this.state.last}
+                                        imageUrlProfile={this.state.imageUrl}
+                                        bioProfile={this.state.bio}
+                                        userIdProfile={this.state.userId}
+                                        toggleMethodProfile={this.toggleModal}
+                                        loaderStatusProfile={this.state.loader}
+                                        updateBioMethodProfile={
+                                            this.updateBioMethod
+                                        }
                                     />
-                                ) : null}
-                            </div>
-                        </div>
-                    </header>
-                    <section className="profileSection">
-                        <Route exact path="/">
-                            <Profile
-                                firstProfile={this.state.first}
-                                lastProfile={this.state.last}
-                                imageUrlProfile={this.state.imageUrl}
-                                bioProfile={this.state.bio}
-                                userIdProfile={this.state.userId}
-                                toggleMethodProfile={this.toggleModal}
-                                loaderStatusProfile={this.state.loader}
-                                updateBioMethodProfile={this.updateBioMethod}
-                            />
-                        </Route>
-                        <Route
-                            path="/user/:id"
-                            render={(props) => (
-                                <OtherProfile
-                                    key={props.match.url}
-                                    match={props.match}
-                                    history={props.history}
+                                </Route>
+                                <Route
+                                    path="/user/:id"
+                                    render={(props) => (
+                                        <OtherProfile
+                                            key={props.match.url}
+                                            match={props.match}
+                                            history={props.history}
+                                        />
+                                    )}
+                                />
+                                <Route path="/users" component={FindPeople} />
+                            </section>
+                            {this.state.uploaderIsVisible && (
+                                <Uploader
+                                    updateImgMethod={this.updateImgMethod}
+                                    loaderinApp={this.loaderMethod}
+                                    userId={this.state.userId}
+                                    toggleMethod={this.toggleModal}
                                 />
                             )}
-                        />
-                        <Route path="/users" component={FindPeople} />
-                    </section>
-                    {this.state.uploaderIsVisible && (
-                        <Uploader
-                            updateImgMethod={this.updateImgMethod}
-                            loaderinApp={this.loaderMethod}
-                            userId={this.state.userId}
-                            toggleMethod={this.toggleModal}
-                        />
-                    )}
+                        </>
+                    ) : null}
+                    ;
                 </div>
             </BrowserRouter>
         );

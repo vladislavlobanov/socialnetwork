@@ -17,27 +17,25 @@ export default function Profile({
         <div className="profileComponent">
             <div className="profileAndText">
                 <div className="profilePicContainerBig">
-                    {imageUrlProfile ? (
-                        <ProfilePic
-                            first={firstProfile}
-                            last={lastProfile}
-                            imageUrl={imageUrlProfile}
-                            toggleMethod={toggleMethodProfile}
-                            loaderStatus={loaderStatusProfile}
-                        />
-                    ) : null}
+                    <ProfilePic
+                        first={firstProfile}
+                        last={lastProfile}
+                        imageUrl={imageUrlProfile}
+                        toggleMethod={toggleMethodProfile}
+                        loaderStatus={loaderStatusProfile}
+                    />
                 </div>
                 <div className="profileAndText right">
                     <h3>
                         {firstProfile} {lastProfile}
                     </h3>
-                    {bioProfile ? (
-                        <BioEditor
-                            bio={bioProfile}
-                            userId={userIdProfile}
-                            updateBioMethod={updateBioMethodProfile}
-                        />
-                    ) : null}
+
+                    <BioEditor
+                        bio={bioProfile}
+                        userId={userIdProfile}
+                        updateBioMethod={updateBioMethodProfile}
+                    />
+
                     <Link
                         to={`/`}
                         onClick={async () => {
