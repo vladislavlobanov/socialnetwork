@@ -71,6 +71,9 @@ router.post("/updatebio", async (req, res) => {
     }
 });
 
-
+router.get("/logout", (req, res) => {
+    req.session = null;
+    res.sendStatus(200);
+});
 
 module.exports = router;

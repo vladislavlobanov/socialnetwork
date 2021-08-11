@@ -80,13 +80,17 @@ export default class App extends Component {
                         <Logo />
                         <div className="headerRightSide">
                             <Link to="/users">Find people</Link>
-                            <ProfilePic
-                                first={this.state.first}
-                                last={this.state.last}
-                                imageUrl={this.state.imageUrl}
-                                toggleMethod={this.toggleModal}
-                                loaderStatus={this.state.loader}
-                            />
+                            <div className="profilePicContainer">
+                                {this.state.imageUrl ? (
+                                    <ProfilePic
+                                        first={this.state.first}
+                                        last={this.state.last}
+                                        imageUrl={this.state.imageUrl}
+                                        toggleMethod={this.toggleModal}
+                                        loaderStatus={this.state.loader}
+                                    />
+                                ) : null}
+                            </div>
                         </div>
                     </header>
                     <section className="profileSection">

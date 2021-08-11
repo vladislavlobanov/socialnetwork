@@ -90,6 +90,11 @@ label {
     object-position: center;
 }
 
+.profilePicContainer {
+    width: 100px;
+    height: 100px;
+}
+
 .noCursor {
     cursor: default;
 }
@@ -101,7 +106,7 @@ label {
     border: 1px black dashed;
 }
 
-.profileAndText > .loaderContainer {
+.profilePicContainerBig > .loaderContainer {
     height: 250px;
     width: 250px;
 }
@@ -194,6 +199,11 @@ header > .loaderContainer {
     border: 1px rgb(195, 195, 195) dashed;
     object-fit: cover;
     object-position: center;
+}
+
+.profilePicContainerBig {
+    width: 250px;
+    height: 250px;
 }
 
 .modal {
@@ -351,4 +361,15 @@ header > .loaderContainer {
 
 section {
     padding-bottom: 20px;
+}
+
+.imgAndFriendButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.imgAndFriendButton button {
+    width: fit-content;
 }

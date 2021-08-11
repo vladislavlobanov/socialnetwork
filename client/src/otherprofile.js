@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import FriendButton from "./friendbtn";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -39,30 +40,33 @@ export default class OtherProfile extends Component {
         return (
             <div className="profileComponent">
                 <div className="profileAndText">
-                    {this.state.loader ? (
-                        <div className="loaderContainer">
-                            <div className="lds-spinner">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                    <div className="imgAndFriendButton">
+                        {this.state.loader ? (
+                            <div className="loaderContainer">
+                                <div className="lds-spinner">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                        <img
-                            className="profilePic noCursor"
-                            src={this.state.imgUrl || "/user.svg"}
-                            alt={this.state.first + " " + this.state.last}
-                        />
-                    )}
+                        ) : (
+                            <img
+                                className="profilePic noCursor"
+                                src={this.state.imgUrl || "/user.svg"}
+                                alt={this.state.first + " " + this.state.last}
+                            />
+                        )}
+                        <FriendButton idHash={this.state.id} />
+                    </div>
                     <div className="profileAndText right">
                         <h3>
                             {this.state.first} {this.state.last}

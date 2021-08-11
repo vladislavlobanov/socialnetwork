@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default class BioEditor extends Component {
     constructor(props) {
@@ -74,10 +75,10 @@ export default class BioEditor extends Component {
                             )}
 
                             {!this.state.editorIsVisible ? (
-                                <a onClick={this.textareaToggle} href="">
+                                <Link onClick={this.textareaToggle} to={``}>
                                     {" "}
                                     Edit
-                                </a>
+                                </Link>
                             ) : (
                                 <div className="bioContainer">
                                     <textarea
@@ -96,9 +97,9 @@ export default class BioEditor extends Component {
                 ) : (
                     <>
                         {!this.state.editorIsVisible ? (
-                            <a onClick={this.textareaToggle} href="">
+                            <Link onClick={this.textareaToggle} to={``}>
                                 Add your bio now
-                            </a>
+                            </Link>
                         ) : (
                             <div className="bioContainer">
                                 <textarea onChange={this.handleChange} />
