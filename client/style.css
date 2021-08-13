@@ -305,6 +305,7 @@ header > .loaderContainer {
 
 .profileSection {
     padding-left: 30px;
+    padding-right: 30px;
 }
 
 .profileAndText {
@@ -371,5 +372,53 @@ section {
 }
 
 .imgAndFriendButton button {
+    width: fit-content;
+}
+
+.friendsWannaBeesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.FriendWannaBeContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: center;
+}
+
+.friendCard {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.friendCard p {
+    font-weight: bold;
+}
+
+.friendPhoto {
+    width: 100px;
+    height: 100px;
+    cursor: default;
+    object-fit: cover;
+    object-position: center;
+    border: 1px black solid;
+}
+
+.friendCardRightSide {
+    width: 200px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.friendCardRightSide button {
     width: fit-content;
 }

@@ -29,7 +29,7 @@ export default class OtherProfile extends Component {
                     loader: false,
                 });
             } else {
-                this.props.history.push("/");
+                this.props.history.replace("/");
             }
         } catch (err) {
             console.log("Err in axios get /otherprofile: ", err);
@@ -63,6 +63,9 @@ export default class OtherProfile extends Component {
                                 className="profilePic noCursor"
                                 src={this.state.imgUrl || "/user.svg"}
                                 alt={this.state.first + " " + this.state.last}
+                                onError={(e) => {
+                                    e.target.src = "/user.svg";
+                                }}
                             />
                         )}
                         <FriendButton idHash={this.state.id} />

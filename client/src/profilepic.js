@@ -8,7 +8,7 @@ export default function ProfilePic({
     loaderStatus,
 }) {
     // console.log("props - info passed down from parent (App) --> ", props);
-    imageUrl = imageUrl || "user.svg";
+    imageUrl = imageUrl || "/user.svg";
     return (
         <>
             {loaderStatus ? (

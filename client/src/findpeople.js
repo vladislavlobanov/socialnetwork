@@ -44,7 +44,7 @@ export default function FindPeople() {
                                 className="findPeople organizeNamePhoto"
                             >
                                 <img
-                                    src={users.img_url || "user.svg"}
+                                    src={users.img_url || "/user.svg"}
                                     alt={users.first + " " + users.last}
                                 />
 
@@ -73,7 +73,8 @@ export default function FindPeople() {
                                     >
                                         <img
                                             src={
-                                                searchData.img_url || "user.svg"
+                                                searchData.img_url ||
+                                                "/user.svg"
                                             }
                                             alt={
                                                 searchData.first +
@@ -81,7 +82,7 @@ export default function FindPeople() {
                                                 searchData.last
                                             }
                                             onError={(e) => {
-                                                e.target.src = "user.svg";
+                                                e.target.src = "/user.svg";
                                             }}
                                         />
                                         <Link to={`/user/${searchData.id}`}>

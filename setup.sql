@@ -28,3 +28,4 @@ DROP TABLE IF EXISTS friendships;
    recipient_id INT REFERENCES users(id) NOT NULL,
    accepted BOOLEAN DEFAULT false
 );
+

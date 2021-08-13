@@ -40,4 +40,31 @@ router.post("/checkFriendStatus/", async (req, res) => {
     }
 });
 
+router.get("/friends-and-wannabees/", async (req, res) => {
+    try {
+        const results = await db.friendsAndWannabees(req.session.userId);
+        res.json(results.rows);
+    } catch (err) {
+        console.log("Error in post /friends-and-wannabees/", err);
+    }
+});
+
+router.post("/friendship/accept/", async (req, res) => {
+    try {
+        await db.acceptFriendRequest(req.session.userId, req.body.foreignId);
+        res.sendStatus(200);
+    } catch (err) {
+        console.log("Error in post /friendship/accept/", err);
+    }
+});
+
+router.post("/friendship/end/", async (req, res) => {
+    try {
+        await db.deleteFriendship(req.session.userId, req.body.foreignId);
+        return res.sendStatus(200);
+    } catch (err) {
+        console.log("Error in post /friendship/end/", err);
+    }
+});
+
 module.exports = router;

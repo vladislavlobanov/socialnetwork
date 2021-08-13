@@ -5,6 +5,7 @@ import Uploader from "./uploader";
 import Profile from "./profile";
 import OtherProfile from "./otherprofile";
 import FindPeople from "./findpeople";
+import Friends from "./friends";
 import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 
@@ -82,6 +83,7 @@ export default class App extends Component {
                                 <Logo />
                                 <div className="headerRightSide">
                                     <Link to="/users">Find people</Link>
+                                    <Link to="/friends">Friends</Link>
                                     <div className="profilePicContainer">
                                         <ProfilePic
                                             first={this.state.first}
@@ -119,6 +121,7 @@ export default class App extends Component {
                                     )}
                                 />
                                 <Route path="/users" component={FindPeople} />
+                                <Route path="/friends" component={Friends} />
                             </section>
                             {this.state.uploaderIsVisible && (
                                 <Uploader
