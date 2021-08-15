@@ -60,6 +60,10 @@ export default function FriendButton({ idHash }) {
             });
     };
 
+    if (!buttonText) {
+        return null;
+    }
+
     return (
         <>
             <button onClick={handleSubmit}>{buttonText}</button>

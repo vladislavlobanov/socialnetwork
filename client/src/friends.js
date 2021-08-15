@@ -46,13 +46,13 @@ export default function Friends() {
                             e.target.src = "/user.svg";
                         }}
                     />
-                    <div className="friendCardRightSide">
-                        <Link to={`/user/${wannabee.id}`}>
-                            <p>
-                                {wannabee.first} {wannabee.last}
-                            </p>
-                        </Link>
 
+                    <div className="friendCardRightSide">
+                        <div className="firstLastWrapper">
+                            <Link to={`/user/${wannabee.id}`}>
+                                {wannabee.first} {wannabee.last}
+                            </Link>
+                        </div>
                         <button
                             onClick={() =>
                                 dispatch(acceptFriendRequest(wannabee.id))

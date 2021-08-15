@@ -55,59 +55,55 @@ export class Registration extends Component {
     render() {
         return (
             <>
+                <h1>Welcome!</h1>
+                {this.state.error && (
+                    <h2 style={{ color: "red" }}>{this.state.errMessage}</h2>
+                )}
                 <section>
                     <form className="regOrLoginForm">
-                        <h1>Welcome!</h1>
-                        {this.state.error && (
-                            <h2 style={{ color: "red" }}>
-                                {this.state.errMessage}
-                            </h2>
-                        )}
-
                         <div>
-                            <label htmlFor="first">First Name</label>
-                            <input
-                                name="first"
-                                placeholder="First Name"
-                                onChange={this.handleChange}
-                            />
+                            <label htmlFor="first">
+                                First Name<a className="asterics">*</a>
+                            </label>
+                            <input name="first" onChange={this.handleChange} />
                         </div>
                         <div>
-                            <label htmlFor="last">Last Name</label>
-                            <input
-                                name="last"
-                                placeholder="Last Name"
-                                onChange={this.handleChange}
-                            />
+                            <label htmlFor="last">
+                                Last Name<a className="asterics">*</a>
+                            </label>
+                            <input name="last" onChange={this.handleChange} />
                         </div>
                         <div>
-                            <label htmlFor="email">Email</label>
-                            <input
-                                name="email"
-                                placeholder="your@email.com"
-                                onChange={this.handleChange}
-                            />
+                            <label htmlFor="email">
+                                Email<a className="asterics">*</a>
+                            </label>
+                            <input name="email" onChange={this.handleChange} />
                         </div>
                         <div>
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">
+                                Password<a className="asterics">*</a>
+                            </label>
                             <input
                                 type="password"
                                 name="password"
-                                placeholder="Password"
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <button onClick={(e) => this.handleSubmit(e)}>
+                        <div></div>
+                        <button
+                            className="buttonStyle"
+                            onClick={(e) => this.handleSubmit(e)}
+                        >
                             Register
                         </button>
-                        <div>
-                            Are you already registered?
-                            <p>
-                                Click to <Link to="/login">here</Link> log in!
-                            </p>
-                        </div>
                     </form>
                 </section>
+                <div>
+                    Are you already registered?
+                    <p>
+                        Click to <Link to="/login">here</Link> log in!
+                    </p>
+                </div>
             </>
         );
     }

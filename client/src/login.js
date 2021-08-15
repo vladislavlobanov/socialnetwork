@@ -54,45 +54,46 @@ export class Login extends Component {
 
     render() {
         return (
-            <section>
-                <form className="regOrLoginForm">
-                    <h1>Log in</h1>
-
-                    {this.state.error && (
-                        <h2 style={{ color: "red" }}>
-                            {this.state.errMessage}
-                        </h2>
-                    )}
-
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            name="email"
-                            placeholder="your@email.com"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <button onClick={(e) => this.handleSubmit(e)}>
-                        Log in
-                    </button>
-                    <div>
-                        Forgot your password?
-                        <p>
-                            Reset your password{" "}
-                            <Link to="/password-reset">here</Link>
-                        </p>
-                    </div>
-                </form>
-            </section>
+            <>
+                <h1>Log in</h1>
+                {this.state.error && (
+                    <h2 style={{ color: "red" }}>{this.state.errMessage}</h2>
+                )}
+                <section>
+                    <form className="regOrLoginForm">
+                        <div>
+                            <label htmlFor="email">
+                                Email<a className="asterics">*</a>
+                            </label>
+                            <input name="email" onChange={this.handleChange} />
+                        </div>
+                        <div>
+                            <label htmlFor="password">
+                                Password<a className="asterics">*</a>
+                            </label>
+                            <input
+                                type="password"
+                                name="password"
+                                onChange={this.handleChange}
+                            />
+                        </div>
+                        <div></div>
+                        <button
+                            className="buttonStyle"
+                            onClick={(e) => this.handleSubmit(e)}
+                        >
+                            Log in
+                        </button>
+                    </form>
+                </section>
+                <div>
+                    Forgot your password?
+                    <p>
+                        Reset your password{" "}
+                        <Link to="/password-reset">here</Link>
+                    </p>
+                </div>
+            </>
         );
     }
 }

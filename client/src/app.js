@@ -133,7 +133,6 @@ export default class App extends Component {
                             )}
                         </>
                     ) : null}
-                    ;
                 </div>
             </BrowserRouter>
         );

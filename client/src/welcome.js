@@ -11,17 +11,17 @@ export default function Welcome() {
             <div className="mainContainer">
                 <div className="leftSide">
                     <Logo />
+                    <div className="overlay"></div>
                     <HashRouter>
-                        <div>
-                            <Route exact path="/" component={Registration} />
-                            <Route path="/login" component={Login} />
-                            <Route
-                                path="/password-reset"
-                                component={ResetPassword}
-                            />
-                        </div>
+                        <Route exact path="/" component={Registration} />
+                        <Route path="/login" component={Login} />
+                        <Route
+                            path="/password-reset"
+                            component={ResetPassword}
+                        />
                     </HashRouter>
                 </div>
+
                 <div className="rightSide"></div>
             </div>
         </>

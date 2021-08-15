@@ -11,13 +11,11 @@ export default class OtherProfile extends Component {
             bio: "",
             imgUrl: "",
             id: this.props.match.params.id,
-            loader: false,
         };
     }
 
     async componentDidMount() {
         try {
-            this.setState({ loader: true });
             const results = await axios.get("/user/" + this.state.id + ".json");
             if (results.data.success) {
                 this.setState({
@@ -26,7 +24,6 @@ export default class OtherProfile extends Component {
                     bio: results.data.bio,
                     imgUrl: results.data.profileImg,
                     id: results.data.userId,
-                    loader: false,
                 });
             } else {
                 this.props.history.replace("/");
@@ -37,37 +34,22 @@ export default class OtherProfile extends Component {
     }
 
     render() {
+        if (!this.state.first) {
+            return null;
+        }
         return (
             <div className="profileComponent">
                 <div className="profileAndText">
                     <div className="imgAndFriendButton">
-                        {this.state.loader ? (
-                            <div className="loaderContainer">
-                                <div className="lds-spinner">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        ) : (
-                            <img
-                                className="profilePic noCursor"
-                                src={this.state.imgUrl || "/user.svg"}
-                                alt={this.state.first + " " + this.state.last}
-                                onError={(e) => {
-                                    e.target.src = "/user.svg";
-                                }}
-                            />
-                        )}
+                        <img
+                            className="profilePic noCursor"
+                            src={this.state.imgUrl || "/user.svg"}
+                            alt={this.state.first + " " + this.state.last}
+                            onError={(e) => {
+                                e.target.src = "/user.svg";
+                            }}
+                        />
+
                         <FriendButton idHash={this.state.id} />
                     </div>
                     <div className="profileAndText right">

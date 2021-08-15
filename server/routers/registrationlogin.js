@@ -125,7 +125,7 @@ router.post("/password/reset/start", (req, res) => {
     if (!emailFormat.test(req.body.email)) {
         return res.json({
             success: false,
-            errMessage: "Please provide a valid email address",
+            errMessage: "Email address is not valid",
         });
     }
 

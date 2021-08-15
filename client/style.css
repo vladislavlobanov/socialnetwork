@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;700&display=swap");
 * {
     margin: 0;
     box-sizing: border-box;
+    font-family: "Source Sans Pro", sans-serif;
 }
 
 body {
-    background-color: ghostwhite;
+    background-color: whitesmoke;
 }
 
 header {
@@ -27,11 +29,23 @@ header {
 
 .logo {
     height: 150px;
+    width: 150px;
 }
 
 input,
 label {
     display: block;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 170px;
+    height: 30px;
+}
+
+.asterics {
+    color: crimson;
 }
 
 .regOrLoginForm {
@@ -42,6 +56,26 @@ label {
     justify-items: center;
 }
 
+.buttonStyle {
+    text-transform: uppercase;
+    width: fit-content;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    border: none;
+    font-size: 20px;
+    background-color: #e9554e;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonStyle:active {
+    background: #ae322c;
+}
+
 .mainContainer {
     display: flex;
     min-height: 100vh;
@@ -49,13 +83,16 @@ label {
 }
 
 .leftSide {
-    background-color: burlywood;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    flex: 1;
+    flex: 2;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .leftSide h2 {
@@ -66,10 +103,17 @@ label {
     text-align: center;
 }
 
+section + div {
+    text-align: center;
+    font-weight: bold;
+}
+
 .rightSide {
-    background-color: darkkhaki;
     flex-grow: 3;
-    flex-basis: 300px;
+    flex-basis: 400px;
+    background-image: url("main-img.jpg");
+    background-size: cover;
+    background-position-x: -35px;
 }
 
 .regOrLoginForm button + div {
@@ -360,10 +404,6 @@ header > .loaderContainer {
     width: 150px;
 }
 
-section {
-    padding-bottom: 20px;
-}
-
 .imgAndFriendButton {
     display: flex;
     flex-direction: column;
@@ -372,7 +412,7 @@ section {
 }
 
 .imgAndFriendButton button {
-    width: fit-content;
+    width: 170px;
 }
 
 .friendsWannaBeesContainer {
@@ -386,7 +426,6 @@ section {
     flex-direction: row;
     gap: 10px;
     flex-wrap: wrap;
-    flex: 1;
     justify-content: center;
 }
 
@@ -394,10 +433,20 @@ section {
     display: flex;
     flex-direction: row;
     gap: 10px;
+    align-items: center;
+    justify-content: center;
 }
 
-.friendCard p {
+.friendCardRightSide a {
     font-weight: bold;
+    text-align: center;
+}
+
+.firstLastWrapper {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 40px;
+    align-items: center;
 }
 
 .friendPhoto {
@@ -417,8 +466,49 @@ section {
     justify-content: center;
     align-items: center;
     gap: 10px;
+    word-break: break-all;
 }
 
 .friendCardRightSide button {
     width: fit-content;
+}
+
+.overlay {
+    display: none;
+}
+
+@media screen and (max-width: 670px) {
+    .mainContainer {
+        width: 100%;
+    }
+    .rightSide {
+        display: none;
+    }
+    .leftSide {
+        background-image: url("main-img.jpg");
+        background-size: cover;
+        background-position-x: -60px;
+        position: relative;
+    }
+
+    .logo {
+        z-index: 20;
+    }
+
+    section,
+    .leftSide > h1,
+    .leftSide > h2,
+    section + div {
+        z-index: 20;
+    }
+
+    .overlay {
+        display: block;
+        position: absolute;
+        background-color: rgba(231, 231, 231, 0.637);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        z-index: 10;
+    }
 }
