@@ -32,7 +32,7 @@ export class Login extends Component {
             .post("/api/login", this.state)
             .then((resp) => {
                 if (resp.data.success) {
-                    location.reload();
+                    location.replace("/");
                 } else {
                     this.setState({
                         error: true,

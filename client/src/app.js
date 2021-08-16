@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Logo from "./logo";
+import { LogoSmall } from "./logo";
 import ProfilePic from "./profilepic";
 import Uploader from "./uploader";
 import Profile from "./profile";
@@ -80,10 +80,28 @@ export default class App extends Component {
                     {this.state.userId ? (
                         <>
                             <header>
-                                <Logo />
+                                <Link id="logoMain" to={`/`}>
+                                    <LogoSmall />
+                                </Link>
+
                                 <div className="headerRightSide">
                                     <Link to="/users">Find people</Link>
                                     <Link to="/friends">Friends</Link>
+                                    <Link
+                                        to={``}
+                                        onClick={async (e) => {
+                                            e.preventDefault();
+                                            const res = await axios.get(
+                                                "api/logout/"
+                                            );
+
+                                            if (res.status == 200) {
+                                                location.replace("/");
+                                            }
+                                        }}
+                                    >
+                                        Log out
+                                    </Link>
                                     <div className="profilePicContainer">
                                         <ProfilePic
                                             first={this.state.first}

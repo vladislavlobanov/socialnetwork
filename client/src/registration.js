@@ -32,7 +32,7 @@ export class Registration extends Component {
             .post("/api/register", this.state)
             .then((resp) => {
                 if (resp.data.success) {
-                    location.reload();
+                    location.replace("/");
                 } else {
                     this.setState({
                         error: true,
@@ -101,7 +101,7 @@ export class Registration extends Component {
                 <div>
                     Are you already registered?
                     <p>
-                        Click to <Link to="/login">here</Link> log in!
+                        Click <Link to="/login">here</Link> to log in!
                     </p>
                 </div>
             </>

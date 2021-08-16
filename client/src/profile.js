@@ -35,19 +35,6 @@ export default function Profile({
                         userId={userIdProfile}
                         updateBioMethod={updateBioMethodProfile}
                     />
-
-                    <Link
-                        to={`/`}
-                        onClick={async () => {
-                            const res = await axios.get("/logout/");
-
-                            if (res.status == 200) {
-                                window.location.href = "/";
-                            }
-                        }}
-                    >
-                        Log out
-                    </Link>
                 </div>
             </div>
         </div>

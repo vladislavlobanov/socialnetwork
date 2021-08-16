@@ -18,6 +18,51 @@ header {
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e0411c;
+}
+
+header .logo {
+    max-width: 300px;
+    width: auto;
+    height: auto;
+}
+
+header a {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='white' /%3E%3C/svg%3E")
+        no-repeat 100% 100%;
+    background-size: 100% 50%;
+    width: fit-content;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-transform: uppercase;
+    color: black;
+    text-shadow: 0 1px 1px white;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+header a,
+header a:hover,
+header a:focus,
+header a:active {
+    text-decoration: none;
+}
+
+header a:hover {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23FFF7AE' /%3E%3C/svg%3E")
+        no-repeat 100% 100%;
+    background-size: 100% 50%;
+}
+
+header a:active {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23F6D167' /%3E%3C/svg%3E")
+        no-repeat 100% 100%;
+    background-size: 100% 50%;
+}
+
+#logoMain {
+    background: none;
 }
 
 .headerRightSide {
@@ -132,6 +177,9 @@ section + div {
     cursor: pointer;
     object-fit: cover;
     object-position: center;
+    background-color: white;
+    border: solid 4px white;
+    border-radius: 5px;
 }
 
 .profilePicContainer {
@@ -154,9 +202,11 @@ section + div {
     height: 250px;
     width: 250px;
 }
-header > .loaderContainer {
+header .loaderContainer {
     height: 100px;
     width: 100px;
+    border: none;
+    background-color: white;
 }
 
 .lds-spinner {

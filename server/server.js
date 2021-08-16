@@ -9,6 +9,14 @@ const friendshipcheck = require("./routers/friendshipcheck");
 const cookieSession = require("cookie-session");
 const secrets = require("./secrets");
 
+// socket
+const server = require("http").Server(app);
+const io = require("socket.io")(server, {
+    allowRequest: (req, callback) =>
+        callback(null, req.headers.referer.startsWith("http://localhost:3000")),
+});
+// socket end
+
 app.use(express.static("./uploads"));
 app.use(express.json());
 
@@ -34,6 +42,6 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.listen(process.env.PORT || 3001, function () {
+server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
 });

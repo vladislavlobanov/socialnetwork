@@ -71,7 +71,7 @@ router.post("/updatebio", async (req, res) => {
     }
 });
 
-router.get("/logout", (req, res) => {
+router.get("/api/logout", (req, res) => {
     req.session = null;
     res.sendStatus(200);
 });
