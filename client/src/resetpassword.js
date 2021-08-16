@@ -8,7 +8,7 @@ export class ResetPassword extends Component {
         this.state = {
             error: false,
             errMessage: "",
-            view: 3,
+            view: 1,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -32,7 +32,7 @@ export class ResetPassword extends Component {
 
         if (this.state.view == 1) {
             axios
-                .post("/password/reset/start", this.state)
+                .post("/api/password/reset/start", this.state)
                 .then((resp) => {
                     if (resp.data.success) {
                         this.setState({
@@ -61,7 +61,7 @@ export class ResetPassword extends Component {
 
         if (this.state.view == 2) {
             axios
-                .post("/password/reset/verify", this.state)
+                .post("/api/password/reset/verify", this.state)
                 .then((resp) => {
                     if (resp.data.success) {
                         this.setState({

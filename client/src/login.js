@@ -29,7 +29,7 @@ export class Login extends Component {
         // over our value of state
         console.log("this.state in login", this.state);
         axios
-            .post("/login", this.state)
+            .post("/api/login", this.state)
             .then((resp) => {
                 if (resp.data.success) {
                     location.reload();

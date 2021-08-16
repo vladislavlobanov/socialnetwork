@@ -1,5 +1,4 @@
-import { HashRouter, Route } from "react-router-dom";
-
+import { BrowserRouter, Route } from "react-router-dom";
 import { Registration } from "./registration";
 import { Login } from "./login";
 import { ResetPassword } from "./resetpassword";
@@ -12,14 +11,14 @@ export default function Welcome() {
                 <div className="leftSide">
                     <Logo />
                     <div className="overlay"></div>
-                    <HashRouter>
+                    <BrowserRouter>
                         <Route exact path="/" component={Registration} />
                         <Route path="/login" component={Login} />
                         <Route
                             path="/password-reset"
                             component={ResetPassword}
                         />
-                    </HashRouter>
+                    </BrowserRouter>
                 </div>
 
                 <div className="rightSide"></div>

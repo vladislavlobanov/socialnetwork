@@ -12,7 +12,7 @@ router.get("/user/id.json", function (req, res) {
     });
 });
 
-router.post("/register", (req, res) => {
+router.post("/api/register", (req, res) => {
     if (
         !req.body.first ||
         !req.body.last ||
@@ -68,7 +68,7 @@ router.post("/register", (req, res) => {
         });
 });
 
-router.post("/login", (req, res) => {
+router.post("/api/login", (req, res) => {
     if (!req.body.email || !req.body.password) {
         return res.json({
             success: false,
@@ -118,7 +118,7 @@ router.post("/login", (req, res) => {
         });
 });
 
-router.post("/password/reset/start", (req, res) => {
+router.post("/api/password/reset/start", (req, res) => {
     const emailFormat =
         /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -158,7 +158,7 @@ router.post("/password/reset/start", (req, res) => {
         });
 });
 
-router.post("/password/reset/verify", (req, res) => {
+router.post("/api/password/reset/verify", (req, res) => {
     if (!req.body.code || !req.body.password) {
         return res.json({
             success: false,

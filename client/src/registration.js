@@ -29,7 +29,7 @@ export class Registration extends Component {
         // over our value of state
         console.log("this.state in Register", this.state);
         axios
-            .post("/register", this.state)
+            .post("/api/register", this.state)
             .then((resp) => {
                 if (resp.data.success) {
                     location.reload();
