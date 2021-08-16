@@ -6,8 +6,10 @@ import Profile from "./profile";
 import OtherProfile from "./otherprofile";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
+import { MenuLinks, Hamburger } from "./menulinks";
 import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+import MediaQuery from "react-responsive";
 
 export default class App extends Component {
     constructor() {
@@ -21,11 +23,13 @@ export default class App extends Component {
             uploaderIsVisible: false,
             loader: false, //shows loading bar when pic is updating - testing this
             // currentUrl: window.location.pathname,
+            linksVisible: false,
         };
         this.toggleModal = this.toggleModal.bind(this);
         this.updateImgMethod = this.updateImgMethod.bind(this);
         this.loaderMethod = this.loaderMethod.bind(this);
         this.updateBioMethod = this.updateBioMethod.bind(this);
+        this.toggleLinks = this.toggleLinks.bind(this);
     }
 
     async componentDidMount() {
@@ -49,6 +53,12 @@ export default class App extends Component {
         // console.log("toggleModal in app is running!!!");
         this.setState({
             uploaderIsVisible: !this.state.uploaderIsVisible,
+        });
+    }
+
+    toggleLinks() {
+        this.setState({
+            linksVisible: !this.state.linksVisible,
         });
     }
 
@@ -85,23 +95,16 @@ export default class App extends Component {
                                 </Link>
 
                                 <div className="headerRightSide">
-                                    <Link to="/users">Find people</Link>
-                                    <Link to="/friends">Friends</Link>
-                                    <Link
-                                        to={``}
-                                        onClick={async (e) => {
-                                            e.preventDefault();
-                                            const res = await axios.get(
-                                                "api/logout/"
-                                            );
+                                    <MenuLinks
+                                        toggleStatus={this.state.linksVisible}
+                                        toggleMethod={this.toggleLinks}
+                                    />
+                                    <MediaQuery maxWidth={1066}>
+                                        <Hamburger
+                                            toggleLinks={this.toggleLinks}
+                                        />
+                                    </MediaQuery>
 
-                                            if (res.status == 200) {
-                                                location.replace("/");
-                                            }
-                                        }}
-                                    >
-                                        Log out
-                                    </Link>
                                     <div className="profilePicContainer">
                                         <ProfilePic
                                             first={this.state.first}

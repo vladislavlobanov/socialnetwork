@@ -527,6 +527,12 @@ header .loaderContainer {
     display: none;
 }
 
+.linksMenu {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
 @media screen and (max-width: 670px) {
     .mainContainer {
         width: 100%;
@@ -560,5 +566,29 @@ header .loaderContainer {
         height: 100%;
         top: 0;
         z-index: 10;
+    }
+}
+
+.hamburgerMenu {
+    cursor: pointer;
+}
+
+rect {
+    fill: white;
+}
+
+@media screen and (max-width: 1066px) {
+    .linksMenu {
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        z-index: 30;
+    }
+
+    .show {
+        display: flex;
     }
 }
