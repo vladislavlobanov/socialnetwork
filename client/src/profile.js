@@ -1,7 +1,5 @@
 import BioEditor from "./bioeditor";
 import ProfilePic from "./profilepic";
-import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default function Profile({
     firstProfile,

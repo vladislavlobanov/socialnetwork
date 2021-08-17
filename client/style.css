@@ -117,6 +117,10 @@ input {
     cursor: pointer;
 }
 
+.buttonStyle.small {
+    font-size: 15px;
+}
+
 .buttonStyle:active {
     background: #ae322c;
 }
@@ -290,9 +294,10 @@ header .loaderContainer {
 .profileComponent img {
     width: 250px;
     height: 250px;
-    border: 1px rgb(195, 195, 195) dashed;
+    border: 10px white solid;
     object-fit: cover;
     object-position: center;
+    background-color: white;
 }
 
 .profilePicContainerBig {
@@ -306,7 +311,7 @@ header .loaderContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(81, 183, 230, 0.603);
+    background-color: rgba(192, 192, 192, 0.637);
     height: 100%;
     width: 100%;
     padding-top: 30px;
@@ -315,8 +320,11 @@ header .loaderContainer {
 .modalContainer {
     position: fixed;
     display: grid;
-    background-color: burlywood;
-    width: fit-content;
+    background-color: white;
+    border: 10px solid white;
+    border-radius: 5px;
+    width: 400px;
+    width: 600px;
     min-height: fit-content;
     max-height: calc(100vh - 60px);
     overflow: scroll;
@@ -336,6 +344,10 @@ header .loaderContainer {
     font-weight: bold;
     cursor: pointer;
     justify-self: end;
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    padding-top: 5px;
 }
 
 .modal-close {
@@ -361,15 +373,20 @@ header .loaderContainer {
 }
 
 .inputfile + label {
-    text-shadow: 3px 0 10px #ff94b8;
-    background-color: transparent;
-    display: inline-block;
+    text-transform: uppercase;
+    width: 300px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    border: none;
+    font-size: 20px;
+    background-color: #e9554e;
+    color: white;
     cursor: pointer;
-}
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-    color: purple;
+    display: inline-block;
 }
 
 .inputfile + label svg {
@@ -383,7 +400,18 @@ header .loaderContainer {
     /* 4px */
 }
 
+.inputfile + label:active {
+    background: #ae322c;
+}
+
+.rotateButtonsCont {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
 .rotateButton {
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
 }
 
@@ -400,6 +428,7 @@ header .loaderContainer {
 .profileSection {
     padding-left: 30px;
     padding-right: 30px;
+    padding-bottom: 30px;
 }
 
 .profileAndText {
@@ -411,6 +440,9 @@ header .loaderContainer {
 .profileAndText.right {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    max-width: 400px;
+    gap: 5px;
 }
 
 .mainContainerApp {
@@ -424,6 +456,10 @@ header .loaderContainer {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+
+.bioContainer.leftAlign {
+    align-items: flex-start;
 }
 
 .bioContainer button {
@@ -533,7 +569,72 @@ header .loaderContainer {
     gap: 10px;
 }
 
+textarea {
+    width: 600px;
+    height: 100px;
+    resize: none;
+}
+
+.bioTextArea {
+    width: 300px;
+    height: 100px;
+    resize: none;
+    font-size: 20px;
+}
+
+.chatContainer {
+    border: 1px solid black;
+    height: 300px;
+    width: 600px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+.messageCard {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.messageCardLeftSide.photo {
+    width: 70px;
+    height: 70px;
+}
+
+.chatComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.overlayMenu {
+    background-color: rgba(192, 192, 192, 0.637);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 25;
+}
+
 @media screen and (max-width: 670px) {
+    header {
+        padding-left: 5px;
+    }
+    #logoMain {
+        padding-left: 0;
+    }
+    .profileAndText {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .logo {
+        width: 300px;
+        width: auto;
+        height: 59.59px;
+    }
     .mainContainer {
         width: 100%;
     }
@@ -577,13 +678,21 @@ rect {
     fill: white;
 }
 
-@media screen and (max-width: 1066px) {
+@media screen and (max-width: 1200px) {
+    header .logo {
+        width: 300px;
+        width: auto;
+        height: 59.59px;
+    }
     .linksMenu {
         flex-direction: column;
         align-items: center;
         position: fixed;
         top: 0;
-        left: 0;
+        right: 0;
+        height: 100%;
+        padding-left: 10px;
+        padding-right: 10px;
         background-color: white;
         z-index: 30;
     }

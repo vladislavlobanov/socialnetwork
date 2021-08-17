@@ -69,23 +69,29 @@ export default class BioEditor extends Component {
             <div>
                 {this.props.bio ? (
                     <>
-                        <div>
-                            {this.state.showBio && (
-                                <>{this.props.bio + " – "}</>
-                            )}
+                        <div className="bioContainer leftAlign">
+                            {this.state.showBio && <>{this.props.bio}</>}
 
                             {!this.state.editorIsVisible ? (
-                                <Link onClick={this.textareaToggle} to={``}>
+                                <button
+                                    className="buttonStyle"
+                                    onClick={this.textareaToggle}
+                                    to={``}
+                                >
                                     {" "}
-                                    Edit
-                                </Link>
+                                    Edit bio
+                                </button>
                             ) : (
                                 <div className="bioContainer">
                                     <textarea
+                                        className="bioTextArea"
                                         defaultValue={this.props.bio}
                                         onChange={this.handleChange}
                                     />
-                                    <button onClick={this.textareaToggle}>
+                                    <button
+                                        className="buttonStyle"
+                                        onClick={this.textareaToggle}
+                                    >
                                         {!this.state.editorIsVisible
                                             ? "Close"
                                             : this.state.buttonText}
@@ -97,13 +103,23 @@ export default class BioEditor extends Component {
                 ) : (
                     <>
                         {!this.state.editorIsVisible ? (
-                            <Link onClick={this.textareaToggle} to={``}>
+                            <button
+                                className="buttonStyle small"
+                                onClick={this.textareaToggle}
+                                to={``}
+                            >
                                 Add your bio now
-                            </Link>
+                            </button>
                         ) : (
                             <div className="bioContainer">
-                                <textarea onChange={this.handleChange} />
-                                <button onClick={this.textareaToggle}>
+                                <textarea
+                                    className="bioTextArea"
+                                    onChange={this.handleChange}
+                                />
+                                <button
+                                    className="buttonStyle"
+                                    onClick={this.textareaToggle}
+                                >
                                     {!this.state.editorIsVisible
                                         ? "Close"
                                         : this.state.buttonText}

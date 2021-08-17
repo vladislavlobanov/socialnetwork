@@ -125,7 +125,7 @@ module.exports.friendsAndWannabees = (currentUserID) => {
 
 module.exports.getLastTenMessages = () => {
     return db.query(`
-        SELECT first, last, img_url, text, created_at 
+        SELECT first, last, img_url, text, created_at, user_id 
         FROM messages 
         JOIN users ON users.id = messages.user_id
         ORDER BY created_at DESC
@@ -137,7 +137,7 @@ module.exports.addMessage = (text, userId) => {
     return db.query(
         `WITH inserted AS (
         INSERT INTO messages (text, user_id) VALUES ($1,$2) RETURNING *)
-        SELECT users.first, users.last, users.img_url, inserted.text, inserted.created_at
+        SELECT users.first, users.last, users.img_url, inserted.text, inserted.created_at, inserted.user_id
         FROM inserted
         JOIN users ON users.id = inserted.user_id
     `,

@@ -38,7 +38,11 @@ export default class Uploader extends Component {
                 this.setState({
                     error: false,
                     errMessage: "",
-                    uploadText: target.value.split("\\").pop(),
+                    uploadText:
+                        target.value.split("\\").pop().length < 10
+                            ? "Too long"
+                            : target.value.split("\\").pop().substring(0, 10) +
+                              " ...",
                 });
                 fileReader.readAsDataURL(target.files[0]);
             }
@@ -107,7 +111,7 @@ export default class Uploader extends Component {
                         onClick={this.props.toggleMethod}
                         className="closeButton"
                     >
-                        X
+                        &#x2715;
                     </p>
 
                     <h2>Want to change your profile pic?</h2>
@@ -139,10 +143,10 @@ export default class Uploader extends Component {
                         <AvatarEditor
                             ref={this.setEditorRef}
                             image={this.state.src}
-                            width={350}
-                            height={350}
+                            width={250}
+                            height={250}
                             border={50}
-                            color={[255, 255, 255, 0.6]} // RGBA
+                            color={[223, 46, 46, 0.2]} // RGBA
                             scale={this.state.scale}
                             rotate={this.state.rotate}
                         />
@@ -166,7 +170,7 @@ export default class Uploader extends Component {
                                 />
                             </div>
 
-                            <div>
+                            <div className="rotateButtonsCont">
                                 <button
                                     className="rotateButton"
                                     onClick={() => this.rotateLeft()}
@@ -182,7 +186,7 @@ export default class Uploader extends Component {
                             </div>
 
                             <button
-                                className="uploadTest"
+                                className="buttonStyle"
                                 onClick={(e) => this.handleSave(e)}
                             >
                                 Upload

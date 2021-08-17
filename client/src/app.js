@@ -99,8 +99,9 @@ export default class App extends Component {
                                     <MenuLinks
                                         toggleStatus={this.state.linksVisible}
                                         toggleMethod={this.toggleLinks}
+                                        toggleLinks={this.toggleLinks}
                                     />
-                                    <MediaQuery maxWidth={1066}>
+                                    <MediaQuery maxWidth={1200}>
                                         <Hamburger
                                             toggleLinks={this.toggleLinks}
                                         />
