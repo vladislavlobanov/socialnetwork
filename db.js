@@ -135,8 +135,11 @@ module.exports.getLastTenMessages = () => {
 
 module.exports.addMessage = (text, userId) => {
     return db.query(
-        `
-        INSERT INTO messages (text, user_id) VALUES ($1,$2);
+        `WITH inserted AS (
+        INSERT INTO messages (text, user_id) VALUES ($1,$2) RETURNING *)
+        SELECT users.first, users.last, users.img_url, inserted.text, inserted.created_at
+        FROM inserted
+        JOIN users ON users.id = inserted.user_id
     `,
         [text, userId]
     );

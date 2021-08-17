@@ -57,5 +57,9 @@ io.on("connection", async function (socket) {
 
     const { rows } = await db.getLastTenMessages();
     socket.emit("lastMessages", rows);
-    socket.on("newMessage", (data) => console.log(data));
+
+    socket.on("newMessage", async (data) => {
+        const { rows } = await db.addMessage(data, userId);
+        io.emit("updateChat", rows);
+    });
 });
