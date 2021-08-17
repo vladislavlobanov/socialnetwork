@@ -122,3 +122,22 @@ module.exports.friendsAndWannabees = (currentUserID) => {
         [currentUserID]
     );
 };
+
+module.exports.getLastTenMessages = () => {
+    return db.query(`
+        SELECT first, last, img_url, text, created_at 
+        FROM messages 
+        JOIN users ON users.id = messages.user_id
+        ORDER BY created_at DESC
+        LIMIT 10;
+    `);
+};
+
+module.exports.addMessage = (text, userId) => {
+    return db.query(
+        `
+        INSERT INTO messages (text, user_id) VALUES ($1,$2);
+    `,
+        [text, userId]
+    );
+};

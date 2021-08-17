@@ -8,6 +8,7 @@ import reducer from "./redux/reducer.js";
 import * as immutableState from "redux-immutable-state-invariant";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { Provider } from "react-redux";
+import { init } from "./socket.js";
 
 const store = createStore(
     reducer,
@@ -20,6 +21,7 @@ axios.get("/user/id.json").then(function ({ data }) {
     } else {
         // user registered/is logged in therefore the user
         // should NOT see Welcome -> Registration, BUT instead see our logo
+        init(store);
         ReactDOM.render(
             <Provider store={store}>
                 <App />

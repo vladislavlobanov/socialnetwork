@@ -18,6 +18,7 @@ export function MenuLinks({ toggleStatus, toggleMethod }) {
 
     const menuHtml = (
         <div className="linksMenu">
+            <Link to="/chat">Chat</Link>
             <Link to="/users">Find people</Link>
             <Link to="/friends">Friends</Link>
             <Link

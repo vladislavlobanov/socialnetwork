@@ -29,3 +29,11 @@ DROP TABLE IF EXISTS friendships;
    accepted BOOLEAN DEFAULT false
 );
 
+DROP TABLE IF EXISTS messages; 
+
+   CREATE TABLE messages(
+   id SERIAL PRIMARY KEY,
+   text TEXT,
+   user_id INT REFERENCES users(id) NOT NULL,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
