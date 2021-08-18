@@ -12,9 +12,10 @@ export default class OtherProfile extends Component {
             bio: "",
             imgUrl: "",
             id: this.props.match.params.id,
-            mutualFriends: "",
+            mutualFriends: false,
             mounted: "",
         };
+        this.toggleMutualFriends = this.toggleMutualFriends.bind(this);
     }
 
     async componentDidMount() {
@@ -49,6 +50,12 @@ export default class OtherProfile extends Component {
         }
     }
 
+    toggleMutualFriends() {
+        this.setState({
+            mutualFriends: !this.state.mutualFriends,
+        });
+    }
+
     render() {
         if (!this.state.first && this.state.mutualFriends == "") {
             return null;
@@ -66,7 +73,10 @@ export default class OtherProfile extends Component {
                             }}
                         />
 
-                        <FriendButton idHash={this.state.id} />
+                        <FriendButton
+                            idHash={this.state.id}
+                            toggleMutualFriends={this.toggleMutualFriends}
+                        />
                     </div>
                     <div className="profileAndText right">
                         <h3>

@@ -41,32 +41,49 @@ export default function Wall({ myId }) {
     };
     return (
         <div className="chatComponent">
-            <h1 onClick={() => console.log(myId)}>Your Wall</h1>
+            <h1 onClick={() => console.log(myId)}>Wall posts</h1>
             <div>
-                <div className="chatContainer">
-                    {wallposts.map((wallposts, index) => (
-                        <div className="messageCard" key={index}>
-                            <div className="messageCardLeftSide">
-                                <img
-                                    className="messageCardLeftSide photo"
-                                    alt={wallposts.first + " " + wallposts.last}
-                                    src={wallposts.img_url || "/user.svg"}
-                                />
-                            </div>
-                            <div className="chatRightSide">
-                                <div>
-                                    <Link to={`/user/${wallposts.sender_id}`}>
-                                        {wallposts.first} {wallposts.last}
-                                    </Link>{" "}
-                                    {dateConverter(wallposts.created_at)}
+                {!wallposts.length ? (
+                    <div>You don&apos;t have any wall posts yet</div>
+                ) : (
+                    <>
+                        <div className="chatContainer">
+                            {wallposts.map((wallposts, index) => (
+                                <div className="messageCard" key={index}>
+                                    <div className="messageCardLeftSide">
+                                        <img
+                                            className="messageCardLeftSide photo"
+                                            alt={
+                                                wallposts.first +
+                                                " " +
+                                                wallposts.last
+                                            }
+                                            src={
+                                                wallposts.img_url || "/user.svg"
+                                            }
+                                        />
+                                    </div>
+                                    <div className="chatRightSide">
+                                        <div>
+                                            <Link
+                                                to={`/user/${wallposts.sender_id}`}
+                                            >
+                                                {wallposts.first}{" "}
+                                                {wallposts.last}
+                                            </Link>{" "}
+                                            {dateConverter(
+                                                wallposts.created_at
+                                            )}
+                                        </div>
+                                        {wallposts.text}
+                                    </div>
                                 </div>
-                                {wallposts.text}
-                            </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </>
+                )}
                 <textarea
-                    placeholder="Say hi!"
+                    placeholder="Leave your message"
                     onKeyPress={(e) => handleEnter(e)}
                 ></textarea>
             </div>

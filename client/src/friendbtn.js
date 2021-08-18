@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { receiveFriendsAndWannabees, unfriend } from "./redux/friends/slice.js";
 
-export default function FriendButton({ idHash }) {
+export default function FriendButton({ idHash, toggleMutualFriends }) {
     const [buttonText, setButtonText] = useState("");
     const dispatch = useDispatch();
 
@@ -51,8 +51,10 @@ export default function FriendButton({ idHash }) {
                     setButtonText("Send Friend Request");
                 } else if (buttonText == "Accept Friend Request") {
                     setButtonText("End Friendship");
+                    toggleMutualFriends();
                 } else if (buttonText == "End Friendship") {
                     setButtonText("Send Friend Request");
+                    toggleMutualFriends();
                 }
             })
             .catch((err) => {

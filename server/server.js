@@ -54,11 +54,11 @@ io.on("connection", async function (socket) {
         return socket.disconnect(true);
     }
 
-    await db.connectedUsers(socket.request.session.userId, socket.id);
+    // await db.connectedUsers(socket.request.session.userId, socket.id);
 
-    socket.on("disconnect", async () => {
-        await db.disconnect(socket.id);
-    });
+    // socket.on("disconnect", async () => {
+    //     await db.disconnect(socket.id);
+    // });
 
     const userId = socket.request.session.userId;
 
@@ -80,12 +80,12 @@ io.on("connection", async function (socket) {
     });
 
     socket.on("newWallPost", async ({ text, recipient }) => {
-        // console.log(text, sender, recipient);
-        // const { rows: sockets } = await db.findSockets(recipient, userId);
-        // console.log(sockets);
         const { rows: results } = await db.addWallPost(text, userId, recipient);
 
         io.to(recipient).emit("updateWall", results);
+
+        // const { rows: sockets } = await db.findSockets(recipient, userId);
+        // console.log(sockets);
         // for (let i = 0; i < sockets.length; i++) {
         //     io.to(sockets[i].socket).emit("updateWall", results);
         // }
