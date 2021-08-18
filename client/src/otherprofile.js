@@ -13,6 +13,7 @@ export default class OtherProfile extends Component {
             imgUrl: "",
             id: this.props.match.params.id,
             mutualFriends: "",
+            mounted: "",
         };
     }
 
@@ -29,6 +30,7 @@ export default class OtherProfile extends Component {
                 });
             } else {
                 this.props.history.replace("/");
+                return;
             }
             const { data } = await axios.get(
                 `/checkFriendStatus/${this.state.id}`
@@ -75,7 +77,9 @@ export default class OtherProfile extends Component {
                         ) : (
                             <a>User doesn&apos;t have any bio yet</a>
                         )}
-                        {this.state.mutualFriends && <Wall />}
+                        {this.state.mutualFriends && (
+                            <Wall myId={this.state.id} />
+                        )}
                     </div>
                 </div>
             </div>

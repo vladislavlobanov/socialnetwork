@@ -179,3 +179,10 @@ module.exports.connectedUsers = (currentUserID, socket) => {
 module.exports.disconnect = (socket) => {
     return db.query(`DELETE FROM connected WHERE (socket = $1);`, [socket]);
 };
+
+module.exports.findSockets = (recipient, sender) => {
+    return db.query(
+        `SELECT socket FROM connected WHERE (connected_id = $1 OR connected_id = $2);`,
+        [recipient, sender]
+    );
+};

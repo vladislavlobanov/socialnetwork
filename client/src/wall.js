@@ -1,9 +1,14 @@
 import { socket } from "./socket.js";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Wall({ myId }) {
     const wallposts = useSelector((state) => state.wall);
+
+    useEffect(() => {
+        socket.emit("userId", myId);
+    }, []);
 
     if (!wallposts) {
         return null;
@@ -12,7 +17,10 @@ export default function Wall({ myId }) {
     const handleEnter = (event) => {
         if (event.charCode == 13) {
             event.preventDefault();
-            socket.emit("updateWall", event.target.value);
+            socket.emit("newWallPost", {
+                text: event.target.value,
+                recipient: myId,
+            });
             event.target.value = "";
         }
     };
@@ -33,7 +41,7 @@ export default function Wall({ myId }) {
     };
     return (
         <div className="chatComponent">
-            <h1 onClick={() => console.log(wallposts)}>Your Wall</h1>
+            <h1 onClick={() => console.log(myId)}>Your Wall</h1>
             <div>
                 <div className="chatContainer">
                     {wallposts.map((wallposts, index) => (
@@ -47,7 +55,7 @@ export default function Wall({ myId }) {
                             </div>
                             <div className="chatRightSide">
                                 <div>
-                                    <Link to={`/user/${wallposts.user_id}`}>
+                                    <Link to={`/user/${wallposts.sender_id}`}>
                                         {wallposts.first} {wallposts.last}
                                     </Link>{" "}
                                     {dateConverter(wallposts.created_at)}

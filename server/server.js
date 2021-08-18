@@ -73,8 +73,21 @@ io.on("connection", async function (socket) {
     const { rows: wallPosts } = await db.getAllWallPosts(userId);
     socket.emit("allWallPosts", wallPosts);
 
-    // socket.on("newWallPost", async (data) => {
-    //     const { rows } = await db.addWallPost(text, sender, recipient);
-    //     io.emit("updateChat", rows);
-    // });
+    socket.on("userId", async (data) => {
+        socket.join(data);
+        const { rows: wallPosts } = await db.getAllWallPosts(data);
+        socket.emit("allWallPosts", wallPosts);
+    });
+
+    socket.on("newWallPost", async ({ text, recipient }) => {
+        // console.log(text, sender, recipient);
+        // const { rows: sockets } = await db.findSockets(recipient, userId);
+        // console.log(sockets);
+        const { rows: results } = await db.addWallPost(text, userId, recipient);
+
+        io.to(recipient).emit("updateWall", results);
+        // for (let i = 0; i < sockets.length; i++) {
+        //     io.to(sockets[i].socket).emit("updateWall", results);
+        // }
+    });
 });
