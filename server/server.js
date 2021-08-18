@@ -70,9 +70,6 @@ io.on("connection", async function (socket) {
         io.emit("updateChat", rows);
     });
 
-    const { rows: wallPosts } = await db.getAllWallPosts(userId);
-    socket.emit("allWallPosts", wallPosts);
-
     socket.on("userId", async (data) => {
         socket.join(data);
         const { rows: wallPosts } = await db.getAllWallPosts(data);
