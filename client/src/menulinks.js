@@ -9,7 +9,7 @@ export function MenuLinks({ toggleStatus, toggleMethod, toggleLinks }) {
         }
     };
     const hideMenu = useMediaQuery(
-        { maxWidth: 1200 },
+        { maxWidth: 1199 },
         undefined,
         handleMediaQueryChange
     );

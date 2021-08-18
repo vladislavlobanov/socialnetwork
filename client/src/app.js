@@ -101,7 +101,7 @@ export default class App extends Component {
                                         toggleMethod={this.toggleLinks}
                                         toggleLinks={this.toggleLinks}
                                     />
-                                    <MediaQuery maxWidth={1200}>
+                                    <MediaQuery maxWidth={1199}>
                                         <Hamburger
                                             toggleLinks={this.toggleLinks}
                                         />

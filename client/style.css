@@ -678,7 +678,7 @@ rect {
     fill: white;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1199px) {
     header .logo {
         width: 300px;
         width: auto;
