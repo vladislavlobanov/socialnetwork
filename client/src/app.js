@@ -8,6 +8,7 @@ import FindPeople from "./findpeople";
 import Friends from "./friends";
 import { MenuLinks, Hamburger } from "./menulinks";
 import Chat from "./chat";
+import Wall from "./wall";
 import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import MediaQuery from "react-responsive";
@@ -146,6 +147,7 @@ export default class App extends Component {
                                 <Route path="/users" component={FindPeople} />
                                 <Route path="/friends" component={Friends} />
                                 <Route path="/chat" component={Chat} />
+                                <Route path="/wallposts" component={Wall} />
                             </section>
                             {this.state.uploaderIsVisible && (
                                 <Uploader

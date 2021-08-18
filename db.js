@@ -139,8 +139,43 @@ module.exports.addMessage = (text, userId) => {
         INSERT INTO messages (text, user_id) VALUES ($1,$2) RETURNING *)
         SELECT users.first, users.last, users.img_url, inserted.text, inserted.created_at, inserted.user_id
         FROM inserted
-        JOIN users ON users.id = inserted.user_id
+        JOIN users ON users.id = inserted.user_id;
     `,
         [text, userId]
     );
+};
+
+module.exports.getAllWallPosts = (recipientId) => {
+    return db.query(
+        `SELECT users.first, users.last, users.img_url, wallposts.sender_id, wallposts.text, wallposts.created_at
+        FROM wallposts
+        JOIN users ON users.id = wallposts.sender_id
+        WHERE (wallposts.recipient_id = $1) 
+        ORDER BY created_at DESC;
+    `,
+        [recipientId]
+    );
+};
+
+module.exports.addWallPost = (text, senderId, recipientId) => {
+    return db.query(
+        `WITH inserted AS (
+        INSERT INTO wallposts (text, sender_id, recipient_id) VALUES ($1,$2, $3) RETURNING *)
+        SELECT users.first, users.last, users.img_url, inserted.text, inserted.created_at, inserted.sender_id
+        FROM inserted
+        JOIN users ON users.id = inserted.sender_id;
+    `,
+        [text, senderId, recipientId]
+    );
+};
+
+module.exports.connectedUsers = (currentUserID, socket) => {
+    return db.query(
+        `INSERT INTO connected (connected_id, socket) VALUES ($1,$2);`,
+        [currentUserID, socket]
+    );
+};
+
+module.exports.disconnect = (socket) => {
+    return db.query(`DELETE FROM connected WHERE (socket = $1);`, [socket]);
 };

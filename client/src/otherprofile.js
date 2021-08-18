@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
 import FriendButton from "./friendbtn";
+import Wall from "./wall";
 
 export default class OtherProfile extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class OtherProfile extends Component {
             bio: "",
             imgUrl: "",
             id: this.props.match.params.id,
+            mutualFriends: "",
         };
     }
 
@@ -28,13 +30,25 @@ export default class OtherProfile extends Component {
             } else {
                 this.props.history.replace("/");
             }
+            const { data } = await axios.get(
+                `/checkFriendStatus/${this.state.id}`
+            );
+            if (data.length && data[0].accepted) {
+                this.setState({
+                    mutualFriends: true,
+                });
+            } else {
+                this.setState({
+                    mutualFriends: false,
+                });
+            }
         } catch (err) {
             console.log("Err in axios get /otherprofile: ", err);
         }
     }
 
     render() {
-        if (!this.state.first) {
+        if (!this.state.first && this.state.mutualFriends == "") {
             return null;
         }
         return (
@@ -61,6 +75,7 @@ export default class OtherProfile extends Component {
                         ) : (
                             <a>User doesn&apos;t have any bio yet</a>
                         )}
+                        {this.state.mutualFriends && <Wall />}
                     </div>
                 </div>
             </div>

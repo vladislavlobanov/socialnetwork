@@ -53,6 +53,13 @@ io.on("connection", async function (socket) {
     if (!socket.request.session.userId) {
         return socket.disconnect(true);
     }
+
+    await db.connectedUsers(socket.request.session.userId, socket.id);
+
+    socket.on("disconnect", async () => {
+        await db.disconnect(socket.id);
+    });
+
     const userId = socket.request.session.userId;
 
     const { rows } = await db.getLastTenMessages();
@@ -62,4 +69,12 @@ io.on("connection", async function (socket) {
         const { rows } = await db.addMessage(data, userId);
         io.emit("updateChat", rows);
     });
+
+    const { rows: wallPosts } = await db.getAllWallPosts(userId);
+    socket.emit("allWallPosts", wallPosts);
+
+    // socket.on("newWallPost", async (data) => {
+    //     const { rows } = await db.addWallPost(text, sender, recipient);
+    //     io.emit("updateChat", rows);
+    // });
 });

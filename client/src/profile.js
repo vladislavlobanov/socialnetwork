@@ -1,5 +1,6 @@
 import BioEditor from "./bioeditor";
 import ProfilePic from "./profilepic";
+import Wall from "./wall";
 
 export default function Profile({
     firstProfile,
@@ -33,6 +34,7 @@ export default function Profile({
                         userId={userIdProfile}
                         updateBioMethod={updateBioMethodProfile}
                     />
+                    <Wall myId={userIdProfile} />
                 </div>
             </div>
         </div>

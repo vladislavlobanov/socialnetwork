@@ -37,3 +37,24 @@ DROP TABLE IF EXISTS messages;
    user_id INT REFERENCES users(id) NOT NULL,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS wallposts; 
+
+   CREATE TABLE wallposts(
+   id SERIAL PRIMARY KEY,
+   sender_id INT REFERENCES users(id) NOT NULL,
+   recipient_id INT REFERENCES users(id) NOT NULL,
+   text TEXT,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS connected; 
+
+   CREATE TABLE connected(
+   id SERIAL PRIMARY KEY,
+   connected_id INT REFERENCES users(id) NOT NULL,
+   socket TEXT,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO wallposts (sender_id, recipient_id, text) VALUES (4,3,'Nice Profile!'); 
