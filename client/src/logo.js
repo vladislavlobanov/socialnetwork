@@ -5,7 +5,7 @@ export function Logo() {
 }
 
 export function LogoSmall() {
-    const changeLogo = useMediaQuery({ query: "(max-width: 561px)" });
+    const changeLogo = useMediaQuery({ query: "(max-width: 565px)" });
     return (
         <>
             {changeLogo && (

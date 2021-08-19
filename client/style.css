@@ -323,8 +323,7 @@ header .loaderContainer {
     background-color: white;
     border: 10px solid white;
     border-radius: 5px;
-    width: 400px;
-    width: 600px;
+    width: 450px;
     min-height: fit-content;
     max-height: calc(100vh - 60px);
     overflow: scroll;
@@ -374,7 +373,7 @@ header .loaderContainer {
 
 .inputfile + label {
     text-transform: uppercase;
-    width: 300px;
+    width: 200px;
     padding-right: 20px;
     padding-left: 20px;
     padding-top: 5px;
@@ -382,7 +381,7 @@ header .loaderContainer {
     border-radius: 5px;
     letter-spacing: 1px;
     border: none;
-    font-size: 20px;
+    font-size: 15px;
     background-color: #e9554e;
     color: white;
     cursor: pointer;
@@ -441,8 +440,8 @@ header .loaderContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 400px;
-    gap: 5px;
+    width: 450px;
+    gap: 20px;
 }
 
 .mainContainerApp {
@@ -462,6 +461,10 @@ header .loaderContainer {
     align-items: flex-start;
 }
 
+.bioContainer.centerAlign {
+    align-self: center;
+}
+
 .bioContainer button {
     width: fit-content;
 }
@@ -470,7 +473,9 @@ header .loaderContainer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 450px;
 }
+
 .organizeNamePhoto {
     display: flex;
     flex-direction: row;
@@ -479,14 +484,18 @@ header .loaderContainer {
 }
 
 .findPeople.organizeNamePhoto img {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
+    border: 3px rgba(192, 192, 192, 0.575) solid;
+    border-radius: 5px;
     cursor: default;
     object-fit: cover;
     object-position: center;
+    background-color: white;
 }
 
 .findPeople input {
+    padding: 10px;
     width: 150px;
 }
 
@@ -570,14 +579,16 @@ header .loaderContainer {
 }
 
 textarea {
-    width: 600px;
+    width: 450px;
     height: 100px;
     resize: none;
     border-radius: 10px;
+    font-size: 15px;
+    padding: 10px;
 }
 
 .bioTextArea {
-    width: 300px;
+    width: 450px;
     height: 100px;
     resize: none;
     font-size: 20px;
@@ -588,11 +599,12 @@ textarea {
     border-radius: 10px;
     height: fit-content;
     max-height: 300px;
-    width: 600px;
+    width: 450px;
     overflow: scroll;
     display: flex;
     flex-direction: column-reverse;
     gap: 10px;
+    padding: 5px;
 }
 .messageCard {
     display: flex;
@@ -603,12 +615,20 @@ textarea {
 .messageCardLeftSide.photo {
     width: 70px;
     height: 70px;
+    border: 3px rgba(192, 192, 192, 0.575) solid;
+    border-radius: 5px;
 }
 
 .chatComponent {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.chatRightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .overlayMenu {
@@ -621,13 +641,30 @@ textarea {
     z-index: 25;
 }
 
+.chatName {
+    text-decoration: underline;
+    color: #e0411c;
+}
+
+.chatName:hover {
+    text-decoration: underline;
+    color: brown;
+}
+
+.italic {
+    font-style: italic;
+}
+
 @media screen and (max-width: 670px) {
-    header {
+    .bioContainer.leftAlign {
+        align-items: center;
+    }
+    /* header {
         padding-left: 5px;
-    }
-    #logoMain {
+    } */
+    /* #logoMain {
         padding-left: 0;
-    }
+    } */
     .profileAndText {
         flex-direction: column;
         align-items: center;

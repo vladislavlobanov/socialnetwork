@@ -74,7 +74,7 @@ export default class BioEditor extends Component {
 
                             {!this.state.editorIsVisible ? (
                                 <button
-                                    className="buttonStyle"
+                                    className="buttonStyle small"
                                     onClick={this.textareaToggle}
                                     to={``}
                                 >
@@ -82,14 +82,14 @@ export default class BioEditor extends Component {
                                     Edit bio
                                 </button>
                             ) : (
-                                <div className="bioContainer">
+                                <div className="bioContainer centerAlign">
                                     <textarea
                                         className="bioTextArea"
                                         defaultValue={this.props.bio}
                                         onChange={this.handleChange}
                                     />
                                     <button
-                                        className="buttonStyle"
+                                        className="buttonStyle small"
                                         onClick={this.textareaToggle}
                                     >
                                         {!this.state.editorIsVisible
@@ -117,7 +117,7 @@ export default class BioEditor extends Component {
                                     onChange={this.handleChange}
                                 />
                                 <button
-                                    className="buttonStyle"
+                                    className="buttonStyle small"
                                     onClick={this.textareaToggle}
                                 >
                                     {!this.state.editorIsVisible

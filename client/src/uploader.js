@@ -186,7 +186,7 @@ export default class Uploader extends Component {
                             </div>
 
                             <button
-                                className="buttonStyle"
+                                className="buttonStyle small"
                                 onClick={(e) => this.handleSave(e)}
                             >
                                 Upload

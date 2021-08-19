@@ -11,6 +11,7 @@ export default function Delete({ userId, toggleDelete }) {
 
                 <h2>Would you like to delete your profile?</h2>
                 <button
+                    className="buttonStyle small"
                     onClick={async (e) => {
                         e.preventDefault();
                         const res = await axios.post("/api/delete");
@@ -22,7 +23,10 @@ export default function Delete({ userId, toggleDelete }) {
                 >
                     Yes, please
                 </button>
-                <button onClick={() => toggleDelete()}>
+                <button
+                    className="buttonStyle small"
+                    onClick={() => toggleDelete()}
+                >
                     No, I&apos;ve changed my mind
                 </button>
             </div>

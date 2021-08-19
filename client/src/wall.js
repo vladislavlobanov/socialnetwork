@@ -66,27 +66,33 @@ export default function Wall({ myId }) {
                                     <div className="chatRightSide">
                                         <div>
                                             <Link
+                                                className="chatName"
                                                 to={`/user/${wallposts.sender_id}`}
                                             >
                                                 {wallposts.first}{" "}
                                                 {wallposts.last}
-                                            </Link>{" "}
-                                            {dateConverter(
-                                                wallposts.created_at
-                                            )}
+                                            </Link>
+                                            {" on "}
+                                            <span className="italic">
+                                                {dateConverter(
+                                                    wallposts.created_at
+                                                )}
+                                            </span>
                                         </div>
+                                        {'"'}
                                         {wallposts.text}
+                                        {'"'}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </>
                 )}
-                <textarea
-                    placeholder="Leave your message"
-                    onKeyPress={(e) => handleEnter(e)}
-                ></textarea>
             </div>
+            <textarea
+                placeholder="Leave your message"
+                onKeyPress={(e) => handleEnter(e)}
+            ></textarea>
         </div>
     );
 }

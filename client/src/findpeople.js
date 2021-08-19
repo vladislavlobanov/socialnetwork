@@ -50,7 +50,7 @@ export default function FindPeople() {
                                 alt={users.first + " " + users.last}
                             />
 
-                            <Link to={`/user/${users.id}`}>
+                            <Link className="chatName" to={`/user/${users.id}`}>
                                 {users.first} {users.last}
                             </Link>
                         </div>
@@ -60,6 +60,7 @@ export default function FindPeople() {
 
             <h1>Are you looking for someone in particular?</h1>
             <input
+                className="searchUser"
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Enter name"
             ></input>
@@ -84,7 +85,10 @@ export default function FindPeople() {
                                             e.target.src = "/user.svg";
                                         }}
                                     />
-                                    <Link to={`/user/${searchData.id}`}>
+                                    <Link
+                                        className="chatName"
+                                        to={`/user/${searchData.id}`}
+                                    >
                                         {searchData.first} {searchData.last}
                                     </Link>
                                 </div>

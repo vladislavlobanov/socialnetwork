@@ -27,17 +27,18 @@ export default function Profile({
                         />
                     </div>
                     <button
+                        className="buttonStyle small"
                         onClick={() => {
                             toggleDelete();
                         }}
                     >
-                        Delete my profile
+                        Delete profile
                     </button>
                 </div>
                 <div className="profileAndText right">
-                    <h3>
+                    <h1>
                         {firstProfile} {lastProfile}
-                    </h3>
+                    </h1>
 
                     <BioEditor
                         bio={bioProfile}

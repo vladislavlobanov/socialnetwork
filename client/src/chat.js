@@ -34,35 +34,55 @@ export default function Chat() {
 
     return (
         <div className="chatComponent">
-            <h1>Chat component</h1>
+            <h1>Chat</h1>
             <div>
-                <div className="chatContainer">
-                    {messages.map((message, index) => (
-                        <div className="messageCard" key={index}>
-                            <div className="messageCardLeftSide">
-                                <img
-                                    className="messageCardLeftSide photo"
-                                    alt={message.first + " " + message.last}
-                                    src={message.img_url || "/user.svg"}
-                                />
-                            </div>
-                            <div className="chatRightSide">
-                                <div>
-                                    <Link to={`/user/${message.user_id}`}>
-                                        {message.first} {message.last}
-                                    </Link>{" "}
-                                    {dateConverter(message.created_at)}
+                {!messages.length ? (
+                    <div>You don&apos;t have any wall posts yet</div>
+                ) : (
+                    <>
+                        <div className="chatContainer">
+                            {messages.map((message, index) => (
+                                <div className="messageCard" key={index}>
+                                    <div className="messageCardLeftSide">
+                                        <img
+                                            className="messageCardLeftSide photo"
+                                            alt={
+                                                message.first +
+                                                " " +
+                                                message.last
+                                            }
+                                            src={message.img_url || "/user.svg"}
+                                        />
+                                    </div>
+                                    <div className="chatRightSide">
+                                        <div>
+                                            <Link
+                                                className="chatName"
+                                                to={`/user/${message.user_id}`}
+                                            >
+                                                {message.first} {message.last}
+                                            </Link>
+                                            {" on "}
+                                            <span className="italic">
+                                                {dateConverter(
+                                                    message.created_at
+                                                )}
+                                            </span>
+                                        </div>
+                                        {'"'}
+                                        {message.text}
+                                        {'"'}
+                                    </div>
                                 </div>
-                                {message.text}
-                            </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-                <textarea
-                    placeholder="Say hi!"
-                    onKeyPress={(e) => handleEnter(e)}
-                ></textarea>
+                    </>
+                )}
             </div>
+            <textarea
+                placeholder="Say hi!"
+                onKeyPress={(e) => handleEnter(e)}
+            ></textarea>
         </div>
     );
 }
