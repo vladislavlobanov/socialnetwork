@@ -108,18 +108,20 @@ export default function Friends() {
     );
 
     return (
-        <div className="friendsWannaBeesContainer">
-            <h1>These people want to be your friends</h1>
-            {!wannabees.length && (
-                <div>Nobody has sent you a friend request</div>
-            )}
-            {!!wannabees.length && wannaBeHtml}
+        <div className="mainWrapper">
+            <div className="friendsWannaBeesContainer">
+                <h1>These people want to be your friends</h1>
+                {!wannabees.length && (
+                    <div>Nobody has sent you a friend request</div>
+                )}
+                {!!wannabees.length && wannaBeHtml}
 
-            <h1>These people are currently your friends</h1>
-            {!friends.length && (
-                <div>Currently, you don&apos;t have any friends</div>
-            )}
-            {!!friends.length && friendsHtml}
+                <h1>These people are currently your friends</h1>
+                {!friends.length && (
+                    <div>Currently, you don&apos;t have any friends</div>
+                )}
+                {!!friends.length && friendsHtml}
+            </div>
         </div>
     );
 }

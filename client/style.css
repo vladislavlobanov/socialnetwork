@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #e0401c28;
 }
 
 header {
@@ -50,13 +50,13 @@ header a:active {
 }
 
 header a:hover {
-    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23FFF7AE' /%3E%3C/svg%3E")
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='lightgrey' /%3E%3C/svg%3E")
         no-repeat 100% 100%;
     background-size: 100% 50%;
 }
 
 header a:active {
-    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23F6D167' /%3E%3C/svg%3E")
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='grey' /%3E%3C/svg%3E")
         no-repeat 100% 100%;
     background-size: 100% 50%;
 }
@@ -303,6 +303,14 @@ header .loaderContainer {
     }
 }
 
+.profileComponent {
+    background-color: whitesmoke;
+    min-width: 60%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
 .profileComponent img {
     width: 250px;
     height: 250px;
@@ -439,29 +447,32 @@ header .loaderContainer {
 .profileSection {
     display: flex;
     justify-content: center;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
+    /* padding-left: 30px;
+    padding-right: 30px; */
+    width: 100%;
+    align-self: center;
+    min-height: calc(100vh - 120px);
 }
 
 .profileAndText {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    height: fit-content;
 }
 
 .profileAndText.right {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 450px;
     gap: 20px;
+    min-width: 300px;
+    max-width: 450px;
 }
 
 .mainContainerApp {
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .bioContainer {
@@ -469,6 +480,8 @@ header .loaderContainer {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    min-width: 300px;
+    max-width: 450px;
 }
 
 .bioContainer.leftAlign {
@@ -483,11 +496,18 @@ header .loaderContainer {
     width: fit-content;
 }
 
+.mainWrapper {
+    display: flex;
+    justify-content: center;
+    min-width: 60%;
+    background-color: whitesmoke;
+    padding: 20px;
+}
 .findPeople {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 450px;
+    width: fit-content;
 }
 
 .organizeNamePhoto {
@@ -594,7 +614,8 @@ header .loaderContainer {
 }
 
 textarea {
-    width: 450px;
+    min-width: 300px;
+    max-width: 450px;
     height: 100px;
     resize: none;
     border-radius: 10px;
@@ -614,7 +635,6 @@ textarea {
     border-radius: 10px;
     height: fit-content;
     max-height: 300px;
-    width: 450px;
     overflow: scroll;
     display: flex;
     flex-direction: column-reverse;
@@ -638,6 +658,8 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-width: 300px;
+    max-width: 450px;
 }
 
 .chatRightSide {

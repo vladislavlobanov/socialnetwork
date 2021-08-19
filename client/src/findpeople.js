@@ -35,70 +35,78 @@ export default function FindPeople() {
         return null;
     }
     return (
-        <div className="findPeople">
-            {!searchTerm && (
-                <>
-                    <h1>Find people</h1>
-                    <p>Check out who just joined!</p>
-                    {users.map((users) => (
-                        <div
-                            key={users.id}
-                            className="findPeople organizeNamePhoto"
-                        >
-                            <img
-                                src={users.img_url || "/user.svg"}
-                                alt={users.first + " " + users.last}
-                            />
+        <div className="mainWrapper">
+            <div className="findPeople">
+                {!searchTerm && (
+                    <>
+                        <h1>Find people</h1>
+                        <p>Check out who just joined!</p>
+                        {users.map((users) => (
+                            <div
+                                key={users.id}
+                                className="findPeople organizeNamePhoto"
+                            >
+                                <img
+                                    src={users.img_url || "/user.svg"}
+                                    alt={users.first + " " + users.last}
+                                />
 
-                            <Link className="chatName" to={`/user/${users.id}`}>
-                                {users.first} {users.last}
-                            </Link>
-                        </div>
-                    ))}
-                </>
-            )}
-
-            <h1>Are you looking for someone in particular?</h1>
-            <input
-                className="searchUser"
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Enter name"
-            ></input>
-
-            {searchTerm && (
-                <>
-                    {searchTerm && searchData.length > 0 ? (
-                        <>
-                            {searchData.map((searchData) => (
-                                <div
-                                    key={searchData.id}
-                                    className="findPeople organizeNamePhoto"
+                                <Link
+                                    className="chatName"
+                                    to={`/user/${users.id}`}
                                 >
-                                    <img
-                                        src={searchData.img_url || "/user.svg"}
-                                        alt={
-                                            searchData.first +
-                                            " " +
-                                            searchData.last
-                                        }
-                                        onError={(e) => {
-                                            e.target.src = "/user.svg";
-                                        }}
-                                    />
-                                    <Link
-                                        className="chatName"
-                                        to={`/user/${searchData.id}`}
+                                    {users.first} {users.last}
+                                </Link>
+                            </div>
+                        ))}
+                    </>
+                )}
+
+                <h1>Are you looking for someone in particular?</h1>
+                <input
+                    className="searchUser"
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Enter name"
+                ></input>
+
+                {searchTerm && (
+                    <>
+                        {searchTerm && searchData.length > 0 ? (
+                            <>
+                                {searchData.map((searchData) => (
+                                    <div
+                                        key={searchData.id}
+                                        className="findPeople organizeNamePhoto"
                                     >
-                                        {searchData.first} {searchData.last}
-                                    </Link>
-                                </div>
-                            ))}
-                        </>
-                    ) : (
-                        <div>Nothing has been found</div>
-                    )}
-                </>
-            )}
+                                        <img
+                                            src={
+                                                searchData.img_url ||
+                                                "/user.svg"
+                                            }
+                                            alt={
+                                                searchData.first +
+                                                " " +
+                                                searchData.last
+                                            }
+                                            onError={(e) => {
+                                                e.target.src = "/user.svg";
+                                            }}
+                                        />
+                                        <Link
+                                            className="chatName"
+                                            to={`/user/${searchData.id}`}
+                                        >
+                                            {searchData.first} {searchData.last}
+                                        </Link>
+                                    </div>
+                                ))}
+                            </>
+                        ) : (
+                            <div>Nothing has been found</div>
+                        )}
+                    </>
+                )}
+            </div>
         </div>
     );
 }
