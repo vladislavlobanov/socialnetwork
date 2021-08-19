@@ -51,7 +51,7 @@ router.post(
     async function (req, res) {
         try {
             const results = await db.insertProfilePic(
-                req.file.filename,
+                `user/${req.session.userId}/` + req.file.filename,
                 req.body.user
             );
             res.json({ imgUrl: results.rows[0].img_url });
@@ -60,6 +60,14 @@ router.post(
         }
     }
 );
+
+router.post("/api/delete", s3.delete, async function (req, res) {
+    try {
+        res.sendStatus(200);
+    } catch (err) {
+        console.log("Error in post /delete db query: ", err);
+    }
+});
 
 router.post("/updatebio", async (req, res) => {
     try {

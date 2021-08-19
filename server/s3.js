@@ -24,7 +24,7 @@ exports.upload = (req, res, next) => {
         .putObject({
             Bucket: "socialnetwork-spiced2021",
             ACL: "public-read",
-            Key: filename,
+            Key: `user/${req.session.userId}/` + filename,
             Body: fs.createReadStream(path),
             ContentType: mimetype,
             ContentLength: size,
@@ -41,5 +41,24 @@ exports.upload = (req, res, next) => {
         .catch((err) => {
             // uh oh
             console.log("Error in Amazon upload " + err);
+        });
+};
+
+exports.delete = (req, res, next) => {
+    const promiseDelete = s3
+        .deleteObject({
+            Bucket: "socialnetwork-spiced2021",
+            Key: `user/${req.session.userId}/`,
+        })
+        .promise();
+
+    promiseDelete
+        .then(() => {
+            console.log("amazon delete complete");
+            next();
+        })
+        .catch((err) => {
+            // uh oh
+            console.log("Error in Amazon delete " + err);
         });
 };

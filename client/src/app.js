@@ -7,8 +7,8 @@ import OtherProfile from "./otherprofile";
 import FindPeople from "./findpeople";
 import Friends from "./friends";
 import { MenuLinks, Hamburger } from "./menulinks";
+import Delete from "./delete";
 import Chat from "./chat";
-import Wall from "./wall";
 import axios from "axios";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import MediaQuery from "react-responsive";
@@ -23,6 +23,7 @@ export default class App extends Component {
             userId: "",
             bio: "",
             uploaderIsVisible: false,
+            deteleIsVisible: false,
             loader: false, //shows loading bar when pic is updating - testing this
             // currentUrl: window.location.pathname,
             linksVisible: false,
@@ -32,6 +33,7 @@ export default class App extends Component {
         this.loaderMethod = this.loaderMethod.bind(this);
         this.updateBioMethod = this.updateBioMethod.bind(this);
         this.toggleLinks = this.toggleLinks.bind(this);
+        this.toggleDelete = this.toggleDelete.bind(this);
     }
 
     async componentDidMount() {
@@ -55,6 +57,12 @@ export default class App extends Component {
         // console.log("toggleModal in app is running!!!");
         this.setState({
             uploaderIsVisible: !this.state.uploaderIsVisible,
+        });
+    }
+
+    toggleDelete() {
+        this.setState({
+            deteleIsVisible: !this.state.deteleIsVisible,
         });
     }
 
@@ -132,6 +140,7 @@ export default class App extends Component {
                                         updateBioMethodProfile={
                                             this.updateBioMethod
                                         }
+                                        toggleDelete={this.toggleDelete}
                                     />
                                 </Route>
                                 <Route
@@ -147,7 +156,6 @@ export default class App extends Component {
                                 <Route path="/users" component={FindPeople} />
                                 <Route path="/friends" component={Friends} />
                                 <Route path="/chat" component={Chat} />
-                                <Route path="/wallposts" component={Wall} />
                             </section>
                             {this.state.uploaderIsVisible && (
                                 <Uploader
@@ -155,6 +163,12 @@ export default class App extends Component {
                                     loaderinApp={this.loaderMethod}
                                     userId={this.state.userId}
                                     toggleMethod={this.toggleModal}
+                                />
+                            )}
+                            {this.state.deteleIsVisible && (
+                                <Delete
+                                    userId={this.state.userId}
+                                    toggleDelete={this.toggleDelete}
                                 />
                             )}
                         </>

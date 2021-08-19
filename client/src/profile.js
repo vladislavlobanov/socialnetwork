@@ -11,18 +11,28 @@ export default function Profile({
     toggleMethodProfile,
     loaderStatusProfile,
     updateBioMethodProfile,
+    toggleDelete,
 }) {
     return (
         <div className="profileComponent">
             <div className="profileAndText">
-                <div className="profilePicContainerBig">
-                    <ProfilePic
-                        first={firstProfile}
-                        last={lastProfile}
-                        imageUrl={imageUrlProfile}
-                        toggleMethod={toggleMethodProfile}
-                        loaderStatus={loaderStatusProfile}
-                    />
+                <div className="imgAndFriendButton">
+                    <div className="profilePicContainerBig">
+                        <ProfilePic
+                            first={firstProfile}
+                            last={lastProfile}
+                            imageUrl={imageUrlProfile}
+                            toggleMethod={toggleMethodProfile}
+                            loaderStatus={loaderStatusProfile}
+                        />
+                    </div>
+                    <button
+                        onClick={() => {
+                            toggleDelete();
+                        }}
+                    >
+                        Delete my profile
+                    </button>
                 </div>
                 <div className="profileAndText right">
                     <h3>
