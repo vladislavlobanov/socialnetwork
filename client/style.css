@@ -338,12 +338,14 @@ header .loaderContainer {
     padding-bottom: 30px;
 }
 .modalContainer {
-    position: fixed;
+    position: absolute;
     display: grid;
     background-color: white;
     border: 10px solid white;
     border-radius: 5px;
-    width: 450px;
+    /* min-width: 320px; */
+    max-width: 100%;
+    min-width: 40%;
     min-height: fit-content;
     max-height: calc(100vh - 60px);
     overflow: scroll;
@@ -378,8 +380,9 @@ header .loaderContainer {
 }
 
 .modalContainer h2 {
-    width: 400px;
-    text-align: center;
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .inputfile {
