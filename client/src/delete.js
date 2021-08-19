@@ -13,7 +13,7 @@ export default function Delete({ userId, toggleDelete }) {
                 <button
                     onClick={async (e) => {
                         e.preventDefault();
-                        const res = await axios.get("/api/delete");
+                        const res = await axios.post("/api/delete");
 
                         if (res.status == 200) {
                             console.log("delete successful!");

@@ -44,21 +44,33 @@ exports.upload = (req, res, next) => {
         });
 };
 
-exports.delete = (req, res, next) => {
-    const promiseDelete = s3
-        .deleteObject({
+exports.getListAndDelete = async (req, res, next) => {
+    const promiseList = s3
+        .listObjectsV2({
             Bucket: "socialnetwork-spiced2021",
-            Key: `user/${req.session.userId}/`,
+            Prefix: `user/${req.session.userId}/`,
         })
         .promise();
 
-    promiseDelete
-        .then(() => {
+    promiseList
+        .then(async (data) => {
+            const promiseDelete = s3
+                .deleteObjects({
+                    Bucket: "socialnetwork-spiced2021",
+                    Delete: {
+                        Objects: data.Contents.map((image) => {
+                            return { Key: image.Key };
+                        }),
+                        Quiet: false,
+                    },
+                })
+                .promise();
+
+            await promiseDelete;
             console.log("amazon delete complete");
             next();
         })
         .catch((err) => {
-            // uh oh
             console.log("Error in Amazon delete " + err);
         });
 };
