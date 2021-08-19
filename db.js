@@ -186,3 +186,7 @@ module.exports.findSockets = (recipient, sender) => {
         [recipient, sender]
     );
 };
+
+module.exports.deleteUser = (userId) => {
+    return db.query(`DELETE FROM users WHERE (id = $1);`, [userId]);
+};

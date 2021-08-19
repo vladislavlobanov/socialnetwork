@@ -63,7 +63,8 @@ router.post(
 
 router.post("/api/delete", s3.getListAndDelete, async function (req, res) {
     try {
-        console.log("Right before sendstatus200");
+        await db.deleteUser(req.session.userId);
+        req.session = null;
         res.sendStatus(200);
     } catch (err) {
         console.log("Error in post /delete db query: ", err);

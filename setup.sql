@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS users cascade;
 
 CREATE TABLE users(
      id SERIAL PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE users(
 
   CREATE TABLE reset_codes(
     id SERIAL PRIMARY KEY,
-    email VARCHAR NOT NULL REFERENCES users (email),
+    email VARCHAR NOT NULL REFERENCES users (email) ON DELETE CASCADE,
     code VARCHAR NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );
@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS friendships;
 
    CREATE TABLE friendships(
    id SERIAL PRIMARY KEY,
-   sender_id INT REFERENCES users(id) NOT NULL,
-   recipient_id INT REFERENCES users(id) NOT NULL,
+   sender_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+   recipient_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
    accepted BOOLEAN DEFAULT false
 );
 
@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS messages;
    CREATE TABLE messages(
    id SERIAL PRIMARY KEY,
    text TEXT,
-   user_id INT REFERENCES users(id) NOT NULL,
+   user_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -42,8 +42,8 @@ DROP TABLE IF EXISTS wallposts;
 
    CREATE TABLE wallposts(
    id SERIAL PRIMARY KEY,
-   sender_id INT REFERENCES users(id) NOT NULL,
-   recipient_id INT REFERENCES users(id) NOT NULL,
+   sender_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
+   recipient_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
    text TEXT,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -52,9 +52,8 @@ DROP TABLE IF EXISTS connected;
 
    CREATE TABLE connected(
    id SERIAL PRIMARY KEY,
-   connected_id INT REFERENCES users(id) NOT NULL,
+   connected_id INT REFERENCES users(id) ON DELETE CASCADE NOT NULL,
    socket TEXT,
    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO wallposts (sender_id, recipient_id, text) VALUES (4,3,'Nice Profile!'); 

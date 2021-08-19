@@ -54,6 +54,9 @@ exports.getListAndDelete = async (req, res, next) => {
 
     promiseList
         .then(async (data) => {
+            if (data.Contents.length == 0) {
+                return next();
+            }
             const promiseDelete = s3
                 .deleteObjects({
                     Bucket: "socialnetwork-spiced2021",

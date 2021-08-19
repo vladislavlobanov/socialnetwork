@@ -14,9 +14,9 @@ export default function Delete({ userId, toggleDelete }) {
                     onClick={async (e) => {
                         e.preventDefault();
                         const res = await axios.post("/api/delete");
-
                         if (res.status == 200) {
-                            console.log("delete successful!");
+                            toggleDelete();
+                            location.replace("/");
                         }
                     }}
                 >
