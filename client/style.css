@@ -121,6 +121,14 @@ input {
     font-size: 15px;
 }
 
+.buttonStyle.smallest {
+    font-size: 10px;
+}
+
+.buttonStyle.small.adapt {
+    width: 230px;
+}
+
 .buttonStyle:active {
     background: #ae322c;
 }
@@ -425,6 +433,8 @@ header .loaderContainer {
 }
 
 .profileSection {
+    display: flex;
+    justify-content: center;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 30px;
@@ -522,6 +532,7 @@ header .loaderContainer {
     gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 700px;
 }
 
 .friendCard {
@@ -547,10 +558,10 @@ header .loaderContainer {
 .friendPhoto {
     width: 100px;
     height: 100px;
-    cursor: default;
+    border: 3px rgba(192, 192, 192, 0.575) solid;
+    border-radius: 5px;
     object-fit: cover;
     object-position: center;
-    border: 1px black solid;
 }
 
 .friendCardRightSide {

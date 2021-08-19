@@ -49,18 +49,25 @@ export default function Friends() {
 
                     <div className="friendCardRightSide">
                         <div className="firstLastWrapper">
-                            <Link to={`/user/${wannabee.id}`}>
+                            <Link
+                                className="chatName"
+                                to={`/user/${wannabee.id}`}
+                            >
                                 {wannabee.first} {wannabee.last}
                             </Link>
                         </div>
                         <button
+                            className="buttonStyle smallest"
                             onClick={() =>
                                 dispatch(acceptFriendRequest(wannabee.id))
                             }
                         >
                             Accept request
                         </button>
-                        <button onClick={() => dispatch(unfriend(wannabee.id))}>
+                        <button
+                            className="buttonStyle smallest"
+                            onClick={() => dispatch(unfriend(wannabee.id))}
+                        >
                             Reject request
                         </button>
                     </div>
@@ -82,13 +89,16 @@ export default function Friends() {
                         }}
                     />
                     <div className="friendCardRightSide">
-                        <Link to={`/user/${friend.id}`}>
+                        <Link className="chatName" to={`/user/${friend.id}`}>
                             <p>
                                 {friend.first} {friend.last}
                             </p>
                         </Link>
 
-                        <button onClick={() => dispatch(unfriend(friend.id))}>
+                        <button
+                            className="buttonStyle smallest"
+                            onClick={() => dispatch(unfriend(friend.id))}
+                        >
                             End friendship
                         </button>
                     </div>

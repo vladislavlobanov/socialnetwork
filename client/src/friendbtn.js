@@ -68,9 +68,12 @@ export default function FriendButton({ idHash, toggleMutualFriends }) {
 
     return (
         <>
-            <button onClick={handleSubmit}>{buttonText}</button>
+            <button className="buttonStyle small adapt" onClick={handleSubmit}>
+                {buttonText}
+            </button>
             {buttonText == "Accept Friend Request" && (
                 <button
+                    className="buttonStyle small adapt"
                     onClick={() =>
                         dispatch(unfriend(idHash)).then(() =>
                             setButtonText("Send Friend Request")
