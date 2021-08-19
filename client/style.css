@@ -696,6 +696,10 @@ textarea {
     font-style: italic;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 670px) {
     .bioContainer.leftAlign {
         align-items: center;

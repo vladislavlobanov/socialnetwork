@@ -40,14 +40,21 @@ export default class App extends Component {
         try {
             this.setState({ loader: true });
             const resp = await axios.get("/user");
-            this.setState({
-                first: resp.data.first,
-                last: resp.data.last,
-                imageUrl: resp.data.profileImg,
-                userId: resp.data.userId,
-                bio: resp.data.bio,
-                loader: false,
-            });
+            if (resp.data.success) {
+                this.setState({
+                    first: resp.data.first,
+                    last: resp.data.last,
+                    imageUrl: resp.data.profileImg,
+                    userId: resp.data.userId,
+                    bio: resp.data.bio,
+                    loader: false,
+                });
+            } else {
+                const res = await axios.get("/api/logout/");
+                if (res.status == 200) {
+                    location.replace("/");
+                }
+            }
         } catch (err) {
             console.log("Err in axios get /user: ", err);
         }

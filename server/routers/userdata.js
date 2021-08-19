@@ -7,14 +7,17 @@ const { s3, uploader } = require("../middleware");
 router.get("/user", async (req, res) => {
     try {
         const results = await db.findUserById(req.session.userId);
+
         res.json({
             first: results.rows[0].first,
             last: results.rows[0].last,
             profileImg: results.rows[0].img_url,
             userId: results.rows[0].id,
             bio: results.rows[0].bio,
+            success: true,
         });
     } catch (err) {
+        res.json({ success: false });
         console.log("Error in get /user db query: ", err);
     }
 });

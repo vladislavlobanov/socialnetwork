@@ -1,7 +1,14 @@
 import { useMediaQuery } from "react-responsive";
 
 export function Logo() {
-    return <img src="/logo.png" alt="logo" className="logo" />;
+    return (
+        <img
+            onClick={() => location.replace("/")}
+            src="/logo.png"
+            alt="logo"
+            className="logo cursor"
+        />
+    );
 }
 
 export function LogoSmall() {
