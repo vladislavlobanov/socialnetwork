@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 header {
@@ -207,7 +207,9 @@ section + div {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px black dashed;
+    background-color: white;
+    border: solid 10px rgba(192, 192, 192, 0.575);
+    border-radius: 5px;
 }
 
 .profilePicContainerBig > .loaderContainer {
@@ -219,6 +221,8 @@ header .loaderContainer {
     width: 100px;
     border: none;
     background-color: white;
+    border: solid 4px rgba(192, 192, 192, 0.575);
+    border-radius: 5px;
 }
 
 .lds-spinner {
