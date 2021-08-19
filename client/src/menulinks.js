@@ -46,7 +46,7 @@ export function MenuLinks({ toggleStatus, toggleMethod, toggleLinks }) {
                 to={``}
                 onClick={async (e) => {
                     e.preventDefault();
-                    const res = await axios.get("api/logout/");
+                    const res = await axios.get("/api/logout/");
 
                     if (res.status == 200) {
                         toggleLinks();

@@ -182,7 +182,7 @@ section + div {
     object-fit: cover;
     object-position: center;
     background-color: white;
-    border: solid 4px white;
+    border: solid 4px rgba(192, 192, 192, 0.575);
     border-radius: 5px;
 }
 
@@ -294,7 +294,7 @@ header .loaderContainer {
 .profileComponent img {
     width: 250px;
     height: 250px;
-    border: 10px white solid;
+    border: 10px rgba(192, 192, 192, 0.575) solid;
     object-fit: cover;
     object-position: center;
     background-color: white;
@@ -573,6 +573,7 @@ textarea {
     width: 600px;
     height: 100px;
     resize: none;
+    border-radius: 10px;
 }
 
 .bioTextArea {
@@ -583,8 +584,10 @@ textarea {
 }
 
 .chatContainer {
-    border: 1px solid black;
-    height: 300px;
+    border: 5px solid rgba(192, 192, 192, 0.575);
+    border-radius: 10px;
+    height: fit-content;
+    max-height: 300px;
     width: 600px;
     overflow: scroll;
     display: flex;

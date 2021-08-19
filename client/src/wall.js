@@ -7,6 +7,7 @@ export default function Wall({ myId }) {
     const wallposts = useSelector((state) => state.wall);
 
     useEffect(() => {
+        
         socket.emit("userId", myId);
     }, []);
 
