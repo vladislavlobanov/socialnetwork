@@ -101,7 +101,11 @@ export class Registration extends Component {
                 <div>
                     Are you already registered?
                     <p>
-                        Click <Link to="/login">here</Link> to log in!
+                        Click{" "}
+                        <Link className="chatName" to="/login">
+                            here
+                        </Link>{" "}
+                        to log in!
                     </p>
                 </div>
             </>

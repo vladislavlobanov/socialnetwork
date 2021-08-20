@@ -185,8 +185,11 @@ export class ResetPassword extends Component {
                 <>
                     <h1>Success!</h1>
                     <div className="infoMessagesGrid">
-                        You can now <Link to="/login">log in</Link> with your
-                        new password
+                        You can now{" "}
+                        <Link className="chatName" to="/login">
+                            log in
+                        </Link>{" "}
+                        with your new password
                     </div>
                 </>
             );

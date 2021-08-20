@@ -90,7 +90,9 @@ export class Login extends Component {
                     Forgot your password?
                     <p>
                         Reset your password{" "}
-                        <Link to="/password-reset">here</Link>
+                        <Link className="chatName" to="/password-reset">
+                            here
+                        </Link>
                     </p>
                 </div>
             </>

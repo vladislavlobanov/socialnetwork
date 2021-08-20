@@ -40,7 +40,7 @@ export default class Uploader extends Component {
                     errMessage: "",
                     uploadText:
                         target.value.split("\\").pop().length < 10
-                            ? "Too long"
+                            ? target.value.split("\\").pop()
                             : target.value.split("\\").pop().substring(0, 10) +
                               " ...",
                 });
