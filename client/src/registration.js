@@ -12,22 +12,13 @@ export class Registration extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange({ target }) {
-        console.log("which input is running handleChange?", target.name);
-        console.log("value the suer typed:", target.value);
-        // updating state!
-        this.setState(
-            {
-                [target.name]: target.value,
-            },
-            console.log("this.state in Registration:", this.state)
-        );
+        this.setState({
+            [target.name]: target.value,
+        });
     }
     handleSubmit(e) {
-        e.preventDefault(); // prevents button from triggering a refresh
-        console.log("user clicked register");
-        // when the btn gets clicked we want to make an axios request sending
-        // over our value of state
-        console.log("this.state in Register", this.state);
+        e.preventDefault();
+
         axios
             .post("/api/register", this.state)
             .then((resp) => {
@@ -47,9 +38,6 @@ export class Registration extends Component {
                     errMessage: "Something went wrong",
                 });
             });
-    }
-    componentDidMount() {
-        console.log("Register just mounted");
     }
 
     render() {

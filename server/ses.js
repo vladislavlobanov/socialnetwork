@@ -35,6 +35,6 @@ exports.sendEmail = function (recipient, code) {
             },
         })
         .promise()
-        .then(() => console.log("it worked!"))
+        .then(() => console.log("Reset psw sent"))
         .catch((err) => console.log(err));
 };

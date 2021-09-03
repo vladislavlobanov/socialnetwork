@@ -1,5 +1,3 @@
-// pass 'props' as an argument to get access to the info being passed down from the parent (App)
-// Approach #1 - Using destructuring to pull up the properties inside props
 export default function ProfilePic({
     first,
     last,
@@ -7,7 +5,6 @@ export default function ProfilePic({
     toggleMethod,
     loaderStatus,
 }) {
-    // console.log("props - info passed down from parent (App) --> ", props);
     imageUrl = imageUrl || "/user.svg";
     return (
         <>

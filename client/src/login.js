@@ -12,22 +12,13 @@ export class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange({ target }) {
-        console.log("which input is running handleChange?", target.name);
-        console.log("value the user typed:", target.value);
-        // updating state!
-        this.setState(
-            {
-                [target.name]: target.value,
-            },
-            console.log("this.state in Login:", this.state)
-        );
+        this.setState({
+            [target.name]: target.value,
+        });
     }
     handleSubmit(e) {
-        e.preventDefault(); // prevents button from triggering a refresh
-        console.log("user clicked login");
-        // when the btn gets clicked we want to make an axios request sending
-        // over our value of state
-        console.log("this.state in login", this.state);
+        e.preventDefault();
+
         axios
             .post("/api/login", this.state)
             .then((resp) => {
@@ -47,9 +38,6 @@ export class Login extends Component {
                     errMessage: "Something went wrong",
                 });
             });
-    }
-    componentDidMount() {
-        console.log("Login just mounted");
     }
 
     render() {

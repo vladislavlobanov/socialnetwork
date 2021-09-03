@@ -13,13 +13,8 @@ export default class Uploader extends Component {
             errMessage: "",
             uploadText: "Choose a photo",
         };
-        console.log("props in Uploader: ", props);
         this.handleChange = this.handleChange.bind(this);
         this.setEditorRef = this.setEditorRef.bind(this);
-    }
-
-    componentDidMount() {
-        console.log("Uploader mounted!!!");
     }
 
     handleFileSelection({ target }) {

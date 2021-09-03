@@ -99,33 +99,3 @@ export function Hamburger({ toggleLinks }) {
         </div>
     );
 }
-
-// const menuHtml = (
-//         <div className="linksMenu">
-//             <p className="closeButton">X</p>
-//             <Link to="/chat">Chat</Link>
-//             <Link to="/users">Find people</Link>
-//             <Link to="/friends">Friends</Link>
-//             <Link
-//                 to={``}
-//                 onClick={async (e) => {
-//                     e.preventDefault();
-//                     const res = await axios.get("api/logout/");
-
-//                     if (res.status == 200) {
-//                         location.replace("/");
-//                     }
-//                 }}
-//             >
-//                 Log out
-//             </Link>
-//         </div>
-//     );
-//     return (
-//         <>
-//             {showMenu && menuHtml}
-
-//             {hideMenu && toggleStatus && menuHtml}
-//         </>
-//     );
-// }

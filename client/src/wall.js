@@ -41,7 +41,7 @@ export default function Wall({ myId }) {
     };
     return (
         <div className="chatComponent">
-            <h1 onClick={() => console.log(myId)}>Wall posts</h1>
+            <h1>Wall posts</h1>
             <div>
                 {!wallposts.length ? (
                     <div>You don&apos;t have any wall posts yet</div>

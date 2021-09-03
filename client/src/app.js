@@ -61,7 +61,6 @@ export default class App extends Component {
     }
 
     toggleModal() {
-        // console.log("toggleModal in app is running!!!");
         this.setState({
             uploaderIsVisible: !this.state.uploaderIsVisible,
         });
@@ -79,13 +78,12 @@ export default class App extends Component {
         });
     }
 
-    // this fn is responsible for receiving your imageUrl from uploader
-    // and then storing it to its state
+  
     updateImgMethod(arg) {
         this.setState({
             imageUrl: arg,
         });
-        // make sure you set the imageUrl you received from uploader in state!
+     
     }
 
     updateBioMethod(arg) {

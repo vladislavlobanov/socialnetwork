@@ -39,8 +39,6 @@ export default class BioEditor extends Component {
     }
 
     handleChange({ target }) {
-        // updating state!
-
         this.setState({
             draftBio: target.value,
             buttonText: "Update",
@@ -57,11 +55,6 @@ export default class BioEditor extends Component {
         } catch (err) {
             console.log("Err in axios post /updatebio: ", err);
         }
-
-        // Here you will want to make a post request to the server.
-        // You will update the value of the bio in the DB with the new one.
-        // Once successful, you can call a function passed down from App
-        // to update the value in App
     }
 
     render() {
